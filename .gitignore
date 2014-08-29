@@ -19,3 +19,12 @@
 *.exe
 *.out
 *.app
+
+# Build directories
+Debug/
+Release/
+
+# Db files
+*.sdf
+*.opensdf
+
