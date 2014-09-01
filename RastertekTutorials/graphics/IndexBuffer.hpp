@@ -11,9 +11,21 @@ namespace graphics {
 class IndexBuffer : private Buffer {
 public:
 
-	void initialise(ID3D11Device* device, const boost::uint16_t* data, size_t indexCount, UINT miscFlags = 0);
+	void initialise(
+		ID3D11Device* device,
+		const boost::uint16_t* data,
+		size_t indexCount,
+		D3D11_PRIMITIVE_TOPOLOGY topology,
+		UINT miscFlags = 0
+		);
 
-	void initialise(ID3D11Device* device, const boost::uint32_t* data, size_t indexCount, UINT miscFlags = 0);
+	void initialise(
+		ID3D11Device* device,
+		const boost::uint32_t* data,
+		size_t indexCount,
+		D3D11_PRIMITIVE_TOPOLOGY topology,
+		UINT miscFlags = 0
+		);
 
 	void reset() {
 		indexCount_ = 0;
@@ -32,6 +44,8 @@ private:
 	size_t indexCount_;
 
 	size_t indexSize_;
+
+	D3D11_PRIMITIVE_TOPOLOGY topology_;
 
 	void doInitialise(ID3D11Device* device, const void* data, UINT miscFlags = 0);
 

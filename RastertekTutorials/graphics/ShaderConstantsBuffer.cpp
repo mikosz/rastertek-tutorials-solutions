@@ -19,10 +19,16 @@ void ShaderConstantsBuffer::initialise(ID3D11Device* device, size_t size, UINT m
 	Buffer::initialise(device, desc);
 }
 
-void ShaderConstantsBuffer::bind(ID3D11DeviceContext* deviceContext, size_t slot) {
+void ShaderConstantsBuffer::bind(ID3D11DeviceContext* deviceContext, ShaderType shaderType, size_t slot) {
 	ID3D11Buffer* buf = buffer();
 
-	deviceContext->VSSetConstantBuffers(slot, 1, &buf);
+	if (shaderType == VERTEX) {
+		deviceContext->VSSetConstantBuffers(slot, 1, &buf);
+	} else if (shaderType == PIXEL) {
+		deviceContext->PSSetConstantBuffers(slot, 1, &buf);
+	} else {
+		throw std::logic_error("Unknown shader type");
+	}
 }
 
 void ShaderConstantsBuffer::write(ID3D11DeviceContext* deviceContext, const void* data, size_t size) {

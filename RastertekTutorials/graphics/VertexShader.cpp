@@ -44,7 +44,7 @@ void VertexShader::initialise(ID3D11Device* device, utils::COMWrapper<ID3D10Blob
 		throw std::runtime_error("Failed to create a vertex shader");
 	}
 
-	D3D11_INPUT_ELEMENT_DESC inputDesc[2];
+	D3D11_INPUT_ELEMENT_DESC inputDesc[3];
 
 	inputDesc[0].SemanticName = "POSITION";
 	inputDesc[0].SemanticIndex = 0;
@@ -54,13 +54,21 @@ void VertexShader::initialise(ID3D11Device* device, utils::COMWrapper<ID3D10Blob
 	inputDesc[0].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
 	inputDesc[0].InstanceDataStepRate = 0;
 
-	inputDesc[1].SemanticName = "COLOR";
+	inputDesc[1].SemanticName = "TEXCOORD";
 	inputDesc[1].SemanticIndex = 0;
-	inputDesc[1].Format = DXGI_FORMAT_R32G32B32A32_FLOAT;
+	inputDesc[1].Format = DXGI_FORMAT_R32G32_FLOAT;
 	inputDesc[1].InputSlot = 0;
 	inputDesc[1].AlignedByteOffset = D3D11_APPEND_ALIGNED_ELEMENT;
 	inputDesc[1].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
 	inputDesc[1].InstanceDataStepRate = 0;
+
+	inputDesc[2].SemanticName = "NORMAL";
+	inputDesc[2].SemanticIndex = 0;
+	inputDesc[2].Format = DXGI_FORMAT_R32G32B32_FLOAT;
+	inputDesc[2].InputSlot = 0;
+	inputDesc[2].AlignedByteOffset = D3D11_APPEND_ALIGNED_ELEMENT;
+	inputDesc[2].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
+	inputDesc[2].InstanceDataStepRate = 0;
 
 	size_t inputDescSize = sizeof(inputDesc) / sizeof(inputDesc[0]);
 
@@ -75,7 +83,7 @@ void VertexShader::initialise(ID3D11Device* device, utils::COMWrapper<ID3D10Blob
 		throw std::runtime_error("Failed to create an input layout");
 	}
 
-	matrixBuffer_.initialise(device, sizeof(MatrixBuffer), 0);
+	matrixBuffer_.initialise(device, sizeof(MatrixBuffer));
 }
 
 void VertexShader::reset() {
@@ -91,7 +99,7 @@ void VertexShader::bind(ID3D11DeviceContext* deviceContext, const MatrixBuffer& 
 	D3DXMatrixTranspose(&transposed.projection, &matrixBuffer.projection);
 
 	matrixBuffer_.write(deviceContext, &transposed, sizeof(transposed));
-	matrixBuffer_.bind(deviceContext, 0);
+	matrixBuffer_.bind(deviceContext, ShaderConstantsBuffer::VERTEX, 0);
 
 	deviceContext->IASetInputLayout(inputLayout_);
 	deviceContext->VSSetShader(shader_, 0, 0);

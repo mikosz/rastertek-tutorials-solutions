@@ -9,7 +9,12 @@ namespace graphics {
 class ShaderConstantsBuffer : private Buffer {
 public:
 
-	void initialise(ID3D11Device* device, size_t size, UINT miscFlags);
+	enum ShaderType {
+		PIXEL,
+		VERTEX,
+	};
+
+	void initialise(ID3D11Device* device, size_t size, UINT miscFlags = 0);
 
 	void reset() {
 		size_ = 0;
@@ -17,7 +22,7 @@ public:
 		Buffer::reset();
 	}
 
-	void bind(ID3D11DeviceContext* deviceContext, size_t slot);
+	void bind(ID3D11DeviceContext* deviceContext, ShaderType shaderType, size_t slot);
 
 	void write(ID3D11DeviceContext* deviceContext, const void* data, size_t size);
 

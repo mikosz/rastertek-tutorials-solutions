@@ -25,7 +25,8 @@ public:
 
 	struct Vertex {
 		D3DXVECTOR3 position;
-		D3DXVECTOR4 colour;
+		D3DXVECTOR2 textureCoord;
+		D3DXVECTOR3 normal;
 	};
 
 	static utils::COMWrapper<ID3D10Blob> compileShader(

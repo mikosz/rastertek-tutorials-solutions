@@ -37,17 +37,23 @@
     <Filter Include="Header Files\entities">
       <UniqueIdentifier>{057400cb-33e5-4647-bb6a-f34881d331f8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files\shaders">
-      <UniqueIdentifier>{106a45da-1666-4b63-bb91-1013f8469289}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files\shaders\pixel-shaders">
-      <UniqueIdentifier>{8a4b12a0-96da-421d-aaa3-46b151c8f477}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files\shaders\vertex-shaders">
-      <UniqueIdentifier>{6d756804-89df-4d8d-8d84-1dfe408ea3d4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\entities">
       <UniqueIdentifier>{d56c08a6-2764-479b-8f46-480e0a58dea2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\shaders">
+      <UniqueIdentifier>{0aaced3b-7ae4-4a7a-a723-f440f5cbfb6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\shaders\vertex-shaders">
+      <UniqueIdentifier>{f88b933f-43d3-4199-874d-4dc98ec27506}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\shaders\pixel-shaders">
+      <UniqueIdentifier>{26f9ee13-a96c-4cbe-b38f-4d67fed38d34}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\models">
+      <UniqueIdentifier>{4159a943-b6e4-48b2-9d0c-2ab22c20d72c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics\model-loaders">
+      <UniqueIdentifier>{4597b552-ca60-496d-8cab-8e2149c664a1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -96,6 +102,12 @@
     <ClInclude Include="graphics\ShaderConstantsBuffer.hpp">
       <Filter>Header Files\graphics</Filter>
     </ClInclude>
+    <ClInclude Include="graphics\Texture.hpp">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\model\ModelLoader.hpp">
+      <Filter>Source Files\graphics\model-loaders</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="system\Window.cpp">
@@ -140,18 +152,24 @@
     <ClCompile Include="graphics\ShaderConstantsBuffer.cpp">
       <Filter>Source Files\graphics</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <FxCompile Include="shaders\pixel-shaders\basic.pixel.hlsl">
-      <Filter>Resource Files\shaders\pixel-shaders</Filter>
-    </FxCompile>
-    <FxCompile Include="shaders\vertex-shaders\basic.vertex.hlsl">
-      <Filter>Resource Files\shaders\vertex-shaders</Filter>
-    </FxCompile>
+    <ClCompile Include="graphics\Texture.cpp">
+      <Filter>Source Files\graphics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="graphics\IndexBuffer.hpp">
       <Filter>Header Files\graphics</Filter>
     </None>
+    <None Include="data\models\jola.model">
+      <Filter>Resource Files\models</Filter>
+    </None>
+    <None Include="data\shaders\pixel-shaders\basic.pixel.hlsl">
+      <Filter>Resource Files\shaders\pixel-shaders</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="data\shaders\vertex-shaders\basic.vertex.hlsl">
+      <Filter>Resource Files\shaders\vertex-shaders</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>

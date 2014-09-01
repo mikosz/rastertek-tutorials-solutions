@@ -3,6 +3,7 @@
 #include "entities/Actor.hpp"
 
 #include <boost/bind.hpp>
+#include <boost/date_time/posix_time/posix_time.hpp>
 
 using namespace tutorials;
 using namespace tutorials::system;
@@ -51,14 +52,17 @@ int System::run() {
 
 	graphics::Camera::Properties properties;
 	properties.aspectRatio = 800.0f / 600.0f;
-	properties.nearPlane = 1.0f;
+	properties.nearPlane = 0.1f;
 	properties.farPlane = 1000.0f;
-	properties.fieldOfView = 60.0f;
+	properties.fieldOfView = static_cast<float>(D3DXToRadian(40.0f));
 	properties.lookAt = D3DXVECTOR3(0.0f, 0.0f, 1.0f);
 	properties.position = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	properties.up = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
 
 	graphics::Camera camera(properties);
+
+	boost::posix_time::ptime lastFrameEnd = boost::posix_time::microsec_clock::universal_time();
+	boost::posix_time::time_duration lastFrameDuration;
 
 	while (!close_) {
 		MSG message;
@@ -73,7 +77,12 @@ int System::run() {
 			continue;
 		}
 
+		actor.update(lastFrameDuration);
 		renderer_.renderFrame(camera);
+
+		boost::posix_time::ptime now = boost::posix_time::microsec_clock::universal_time();
+		lastFrameDuration = now - lastFrameEnd;
+		lastFrameEnd = now;
 	}
 
 	return 0;

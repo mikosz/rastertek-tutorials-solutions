@@ -7,11 +7,11 @@ void Renderer::initialise(const Device::Properties& properties) {
 	device_.initialise(properties);
 	vertexShader_.initialise(
 		device_.d3dDevice(),
-		VertexShader::compileShader(device_.d3dDevice(), "shaders\\vertex-shaders\\basic.vertex.hlsl", "main")
+		VertexShader::compileShader(device_.d3dDevice(), "data\\shaders\\vertex-shaders\\basic.vertex.hlsl", "main")
 		);
 	pixelShader_.initialise(
 		device_.d3dDevice(),
-		PixelShader::compileShader(device_.d3dDevice(), "shaders\\pixel-shaders\\basic.pixel.hlsl", "main")
+		PixelShader::compileShader(device_.d3dDevice(), "data\\shaders\\pixel-shaders\\basic.pixel.hlsl", "main")
 		);
 }
 
@@ -32,7 +32,11 @@ void Renderer::renderFrame(const Camera& camera) {
 
 		vertexShader_.bind(device_.d3dDeviceContext(), matrixBuffer);
 
-		pixelShader_.bind(device_.d3dDeviceContext());
+		PixelShader::LightBuffer lightBuffer;
+		lightBuffer.diffuseColour = D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f);
+		lightBuffer.lightDirection = D3DXVECTOR3(0.0f, 0.0f, 1.0f);
+
+		pixelShader_.bind(device_.d3dDeviceContext(), &(*it)->texture(), lightBuffer);
 
 		(*it)->render(&device_, camera);
 	}

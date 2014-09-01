@@ -6,7 +6,10 @@
 #include <boost/filesystem/path.hpp>
 
 #include <d3d11.h>
+#include <D3DX10math.h>
 
+#include "Texture.hpp"
+#include "ShaderConstantsBuffer.hpp"
 #include "utils/COMWrapper.hpp"
 
 namespace tutorials {
@@ -14,6 +17,13 @@ namespace graphics {
 
 class PixelShader {
 public:
+
+	struct LightBuffer {
+		D3DXVECTOR4 diffuseColour;
+		D3DXVECTOR3 lightDirection;
+
+		float padding_;
+	};
 
 	static utils::COMWrapper<ID3D10Blob> compileShader(
 		ID3D11Device* device,
@@ -25,11 +35,15 @@ public:
 
 	void reset();
 
-	void bind(ID3D11DeviceContext* deviceContext);
+	void bind(ID3D11DeviceContext* deviceContext, Texture* texture, const LightBuffer& lightBuffer);
 
 private:
 
 	utils::COMWrapper<ID3D11PixelShader> shader_;
+
+	utils::COMWrapper<ID3D11SamplerState> samplerState_;
+
+	ShaderConstantsBuffer lightBuffer_;
 
 };
 

@@ -18,7 +18,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v120_xp</PlatformToolset>
+    <PlatformToolset>v110_xp</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -75,10 +75,12 @@
     <ClInclude Include="graphics\Buffer.hpp" />
     <ClInclude Include="graphics\Camera.hpp" />
     <ClInclude Include="graphics\Device.hpp" />
+    <ClInclude Include="graphics\model\ModelLoader.hpp" />
     <ClInclude Include="graphics\ShaderConstantsBuffer.hpp" />
     <ClInclude Include="graphics\Model.hpp" />
     <ClInclude Include="graphics\PixelShader.hpp" />
     <ClInclude Include="graphics\Renderer.hpp" />
+    <ClInclude Include="graphics\Texture.hpp" />
     <ClInclude Include="graphics\VertexBuffer.hpp" />
     <ClInclude Include="graphics\VertexShader.hpp" />
     <ClInclude Include="system\System.hpp" />
@@ -98,23 +100,22 @@
     <ClCompile Include="graphics\Model.cpp" />
     <ClCompile Include="graphics\PixelShader.cpp" />
     <ClCompile Include="graphics\Renderer.cpp" />
+    <ClCompile Include="graphics\Texture.cpp" />
     <ClCompile Include="graphics\VertexBuffer.cpp" />
     <ClCompile Include="graphics\VertexShader.cpp" />
     <ClCompile Include="system\System.cpp" />
     <ClCompile Include="system\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="shaders\pixel-shaders\basic.pixel.hlsl">
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
-    </FxCompile>
-    <FxCompile Include="shaders\vertex-shaders\basic.vertex.hlsl">
+    <None Include="data\models\jola.model" />
+    <None Include="data\shaders\pixel-shaders\basic.pixel.hlsl" />
+    <None Include="graphics\IndexBuffer.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="data\shaders\vertex-shaders\basic.vertex.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
     </FxCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="graphics\IndexBuffer.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
