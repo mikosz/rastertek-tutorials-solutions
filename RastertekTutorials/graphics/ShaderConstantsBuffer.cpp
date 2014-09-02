@@ -6,6 +6,8 @@ using namespace tutorials;
 using namespace tutorials::graphics;
 
 void ShaderConstantsBuffer::initialise(ID3D11Device* device, size_t size, UINT miscFlags) {
+	size_ = size;
+
 	D3D11_BUFFER_DESC desc;
 	ZeroMemory(&desc, sizeof(desc));
 

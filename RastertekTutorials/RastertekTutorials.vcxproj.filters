@@ -52,8 +52,11 @@
     <Filter Include="Resource Files\models">
       <UniqueIdentifier>{4159a943-b6e4-48b2-9d0c-2ab22c20d72c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\graphics\model-loaders">
-      <UniqueIdentifier>{4597b552-ca60-496d-8cab-8e2149c664a1}</UniqueIdentifier>
+    <Filter Include="Header Files\graphics\model_loaders">
+      <UniqueIdentifier>{4d1de4d7-9535-4857-a491-bde960e41e95}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics\model_loaders">
+      <UniqueIdentifier>{8d64473b-9cdc-4b56-af7c-ea7eb362f4c6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -105,8 +108,14 @@
     <ClInclude Include="graphics\Texture.hpp">
       <Filter>Header Files\graphics</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\model\ModelLoader.hpp">
-      <Filter>Source Files\graphics\model-loaders</Filter>
+    <ClInclude Include="graphics\model_loaders\ModelData.hpp">
+      <Filter>Header Files\graphics\model_loaders</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\model_loaders\ModelLoader.hpp">
+      <Filter>Header Files\graphics\model_loaders</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\model_loaders\SimpleModelLoader.hpp">
+      <Filter>Header Files\graphics\model_loaders</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -154,6 +163,12 @@
     </ClCompile>
     <ClCompile Include="graphics\Texture.cpp">
       <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\model_loaders\ModelData.cpp">
+      <Filter>Source Files\graphics\model_loaders</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\model_loaders\SimpleModelLoader.cpp">
+      <Filter>Source Files\graphics\model_loaders</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

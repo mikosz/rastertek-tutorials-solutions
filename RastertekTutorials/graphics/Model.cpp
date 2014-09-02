@@ -1,65 +1,56 @@
 #include "Model.hpp"
 
-#include <fstream>
-#include <iterator>
-
-#include <boost/spirit/include/qi.hpp>
-
 #include "Device.hpp"
 #include "Camera.hpp"
 
 using namespace tutorials;
 using namespace tutorials::graphics;
 
-void Model::Data::loadFromModelFile(const boost::filesystem::path& path, Data* modelData) {
-	std::ifstream ifs(path.string().c_str());
-	using boost::spirit::qi::float_;
-	using boost::spirit::qi::repeat;
-	using boost::spirit::ascii::space;
+namespace /* anonymous */ {
 
-	std::string line;
-	while (getline(ifs, line)) {
-		std::string::iterator it = line.begin(), end = line.end();
-
-		bool result = boost::spirit::qi::phrase_parse(
-			it, end,
-			(
-				float_ >> float_ >> float_ >> float_ >> float_ >> float_ >> float_ >> float_
-			),
-			space);
-
-		if (it != end) {
-			throw std::runtime_error("Failed to load module from " + path.string());
-		}
+D3D_PRIMITIVE_TOPOLOGY toDXTopology(model_loaders::ModelData::Topology topology) {
+	switch (topology) {
+	case model_loaders::ModelData::TRIANGLE_LIST:
+		return D3D10_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
+	case model_loaders::ModelData::TRIANGLE_STRIP:
+		return D3D10_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP;
+	default:
+		throw std::logic_error("Invalid primitive topology");
 	}
 }
 
-void Model::initialise(Device* device, const Data& data) {
-	assert(!data.vertices.empty());
-	assert(!data.indices.empty());
+} // anonymous namespace
 
+void Model::initialise(Device* device, const model_loaders::ModelData& data) {
 	D3DXMatrixIdentity(&worldMatrix_);
+
+	if (data.faces().empty() || data.vertices().empty() || data.indices().empty()) {
+		throw std::runtime_error("Model cannot be empty");
+	}
 
 	vertexBuffer_.initialise(
 		device->d3dDevice(),
-		&data.vertices.front(),
-		data.vertices.size(),
+		&data.vertices().front(),
+		data.vertices().size(),
 		sizeof(VertexShader::Vertex)
 		);
 
+	// TODO: change indices type to uint16 if possible here (depending on max index)
 	indexBuffer_.initialise(
 		device->d3dDevice(),
-		&data.indices.front(),
-		data.indices.size(),
-		data.topology
+		&data.indices().front(),
+		data.indices().size()
 		);
 
-	texture_.initialise(device->d3dDevice(), data.texturePath);
+	facesData_ = data.faces();
+
+	texture_.initialise(device->d3dDevice(), "data/textures/jola.dds");
 }
 
 void Model::reset() {
 	vertexBuffer_.reset();
 	indexBuffer_.reset();
+	facesData_.clear();
 	texture_.reset();
 }
 
@@ -67,5 +58,20 @@ void Model::render(Device* device, const Camera& camera) {
 	vertexBuffer_.bind(device->d3dDeviceContext(), 0);
 	indexBuffer_.bind(device->d3dDeviceContext());
 
-	device->d3dDeviceContext()->DrawIndexed(indexBuffer_.indexCount(), 0, 0);
+	model_loaders::ModelData::Faces::iterator it, end = facesData_.end();
+	for (it = facesData_.begin(); it != end; ++it) {
+		device->d3dDeviceContext()->IASetPrimitiveTopology(toDXTopology(it->topology));
+
+		size_t indexCount;
+		model_loaders::ModelData::Faces::iterator next = it;
+		++next;
+		if (next == end) {
+			indexCount = indexBuffer_.indexCount() - it->firstIndexIndex;
+		}
+		else {
+			indexCount = next->firstIndexIndex - it->firstIndexIndex;
+		}
+
+		device->d3dDeviceContext()->DrawIndexed(indexCount, it->firstIndexIndex, 0);
+	}
 }

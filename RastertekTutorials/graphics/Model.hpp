@@ -9,6 +9,7 @@
 #include "VertexBuffer.hpp"
 #include "IndexBuffer.hpp"
 #include "Texture.hpp"
+#include "model_loaders/ModelData.hpp"
 
 namespace tutorials {
 namespace graphics {
@@ -19,21 +20,7 @@ class Camera;
 class Model {
 public:
 
-	struct Data {
-
-		std::vector<VertexShader::Vertex> vertices;
-
-		std::vector<boost::uint16_t> indices;
-
-		boost::filesystem::path texturePath;
-
-		D3D11_PRIMITIVE_TOPOLOGY topology;
-
-		static void loadFromModelFile(const boost::filesystem::path& path, Data* modelData);
-
-	};
-
-	void initialise(Device* device, const Data& data);
+	void initialise(Device* device, const model_loaders::ModelData& data);
 
 	void reset();
 
@@ -72,6 +59,8 @@ private:
 	VertexBuffer vertexBuffer_;
 
 	IndexBuffer indexBuffer_;
+
+	model_loaders::ModelData::Faces facesData_;
 
 	Texture texture_;
 

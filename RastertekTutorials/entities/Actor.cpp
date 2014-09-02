@@ -1,11 +1,14 @@
 #include "Actor.hpp"
 
+#include "graphics/model_loaders/SimpleModelLoader.hpp"
+
 using namespace tutorials;
 using namespace tutorials::entities;
 
 Actor::Actor(graphics::Renderer* renderer) {
-	graphics::Model::Data data;
-	graphics::Model::Data::loadFromModelFile("data/models/jola.model", &data);
+	graphics::model_loaders::ModelData data;
+	graphics::model_loaders::SimpleModelLoader loader;
+	loader.load(&data, "data/models/jola.model");
 
 	model_.initialise(&renderer->device(), data);
 

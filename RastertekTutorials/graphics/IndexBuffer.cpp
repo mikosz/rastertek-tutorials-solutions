@@ -9,12 +9,10 @@ void IndexBuffer::initialise(
 	ID3D11Device* device,
 	const boost::uint16_t* data,
 	size_t indexCount,
-	D3D11_PRIMITIVE_TOPOLOGY topology,
 	UINT miscFlags
 	) {
 	indexSize_ = 2;
 	indexCount_ = indexCount;
-	topology_ = topology;
 
 	doInitialise(device, data, miscFlags);
 }
@@ -23,12 +21,10 @@ void IndexBuffer::initialise(
 	ID3D11Device* device,
 	const boost::uint32_t* data,
 	size_t indexCount,
-	D3D11_PRIMITIVE_TOPOLOGY topology,
 	UINT miscFlags
 	) {
 	indexSize_ = 4;
 	indexCount_ = indexCount;
-	topology_ = topology;
 
 	doInitialise(device, data, miscFlags);
 }
@@ -44,8 +40,6 @@ void IndexBuffer::bind(ID3D11DeviceContext* deviceContext) {
 	}
 
 	deviceContext->IASetIndexBuffer(buffer(), indexFormat, 0);
-
-	deviceContext->IASetPrimitiveTopology(topology_);
 }
 
 void IndexBuffer::doInitialise(ID3D11Device* device, const void* data, UINT miscFlags) {
