@@ -47,7 +47,7 @@ public:
 			std::runtime_error("Failed to parse model file");
 		}
 
-		if (!data_->faces().empty()) {
+		if (!data_->groups().empty()) {
 			for (size_t i = 0; i < data_->vertices().size(); ++i) {
 				data_->addIndex(i);
 			}
@@ -64,8 +64,6 @@ private:
 
 	Rule endRule_;
 
-	Rule primitiveTopologyRule_;
-
 	Rule vertexRule_;
 
 	Rule startRule_;
@@ -77,8 +75,8 @@ private:
 			throw std::logic_error("raw data size is not 8 - this shouldn't be possible");
 		}
 
-		if (data_->faces().empty()) {
-			data_->addFace(ModelData::TRIANGLE_LIST);
+		if (data_->groups().empty()) {
+			data_->addGroup(ModelData::TRIANGLE_LIST);
 		}
 
 		ModelData::Vertex vertex;

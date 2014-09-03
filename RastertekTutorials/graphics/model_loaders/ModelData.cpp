@@ -12,15 +12,15 @@ using namespace tutorials::graphics;
 using namespace tutorials::graphics::model_loaders;
 
 void ModelData::reset() {
-	faces_.clear();
+	groups_.clear();
 	vertices_.clear();
 	indices_.clear();
 	maxIndex_ = 0;
 }
 
-void ModelData::addFace(Topology topology) {
-	faces_.push_back(Face(topology));
-	faces_.back().firstIndexIndex = indices_.size();
+void ModelData::addGroup(Topology topology) {
+	groups_.push_back(Group(topology));
+	groups_.back().firstIndexIndex = indices_.size();
 }
 
 void ModelData::addVertex(const Vertex& vertex) {

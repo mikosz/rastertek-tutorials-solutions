@@ -1,14 +1,15 @@
 #include "Actor.hpp"
 
-#include "graphics/model_loaders/SimpleModelLoader.hpp"
+#include "graphics/model_loaders/ObjModelLoader.hpp"
 
 using namespace tutorials;
 using namespace tutorials::entities;
 
 Actor::Actor(graphics::Renderer* renderer) {
 	graphics::model_loaders::ModelData data;
-	graphics::model_loaders::SimpleModelLoader loader;
-	loader.load(&data, "data/models/jola.model");
+	graphics::model_loaders::ObjModelLoader loader;
+	// loader.load(&data, "data/models/Daniel/craig chemise bleu/craig chemis bleu.obj");
+	loader.load(&data, "data/models/cube.model");
 
 	model_.initialise(&renderer->device(), data);
 

@@ -24,7 +24,7 @@ D3D_PRIMITIVE_TOPOLOGY toDXTopology(model_loaders::ModelData::Topology topology)
 void Model::initialise(Device* device, const model_loaders::ModelData& data) {
 	D3DXMatrixIdentity(&worldMatrix_);
 
-	if (data.faces().empty() || data.vertices().empty() || data.indices().empty()) {
+	if (data.groups().empty() || data.vertices().empty() || data.indices().empty()) {
 		throw std::runtime_error("Model cannot be empty");
 	}
 
@@ -42,7 +42,7 @@ void Model::initialise(Device* device, const model_loaders::ModelData& data) {
 		data.indices().size()
 		);
 
-	facesData_ = data.faces();
+	groupData_ = data.groups();
 
 	texture_.initialise(device->d3dDevice(), "data/textures/jola.dds");
 }
@@ -50,7 +50,7 @@ void Model::initialise(Device* device, const model_loaders::ModelData& data) {
 void Model::reset() {
 	vertexBuffer_.reset();
 	indexBuffer_.reset();
-	facesData_.clear();
+	groupData_.clear();
 	texture_.reset();
 }
 
@@ -58,12 +58,12 @@ void Model::render(Device* device, const Camera& camera) {
 	vertexBuffer_.bind(device->d3dDeviceContext(), 0);
 	indexBuffer_.bind(device->d3dDeviceContext());
 
-	model_loaders::ModelData::Faces::iterator it, end = facesData_.end();
-	for (it = facesData_.begin(); it != end; ++it) {
+	model_loaders::ModelData::Groups::iterator it, end = groupData_.end();
+	for (it = groupData_.begin(); it != end; ++it) {
 		device->d3dDeviceContext()->IASetPrimitiveTopology(toDXTopology(it->topology));
 
 		size_t indexCount;
-		model_loaders::ModelData::Faces::iterator next = it;
+		model_loaders::ModelData::Groups::iterator next = it;
 		++next;
 		if (next == end) {
 			indexCount = indexBuffer_.indexCount() - it->firstIndexIndex;

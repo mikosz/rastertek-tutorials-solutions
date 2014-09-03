@@ -18,7 +18,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v120_xp</PlatformToolset>
+    <PlatformToolset>v110_xp</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -77,6 +77,7 @@
     <ClInclude Include="graphics\Device.hpp" />
     <ClInclude Include="graphics\model_loaders\ModelData.hpp" />
     <ClInclude Include="graphics\model_loaders\ModelLoader.hpp" />
+    <ClInclude Include="graphics\model_loaders\ObjModelLoader.hpp" />
     <ClInclude Include="graphics\model_loaders\SimpleModelLoader.hpp" />
     <ClInclude Include="graphics\ShaderConstantsBuffer.hpp" />
     <ClInclude Include="graphics\Model.hpp" />
@@ -98,6 +99,7 @@
     <ClCompile Include="graphics\Camera.cpp" />
     <ClCompile Include="graphics\Device.cpp" />
     <ClCompile Include="graphics\model_loaders\ModelData.cpp" />
+    <ClCompile Include="graphics\model_loaders\ObjModelLoader.cpp" />
     <ClCompile Include="graphics\model_loaders\SimpleModelLoader.cpp" />
     <ClCompile Include="graphics\ShaderConstantsBuffer.cpp" />
     <ClCompile Include="graphics\IndexBuffer.cpp" />
@@ -111,6 +113,7 @@
     <ClCompile Include="system\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="data\models\cube.model" />
     <None Include="data\models\jola.model" />
     <None Include="data\shaders\pixel-shaders\basic.pixel.hlsl" />
     <None Include="graphics\IndexBuffer.hpp" />

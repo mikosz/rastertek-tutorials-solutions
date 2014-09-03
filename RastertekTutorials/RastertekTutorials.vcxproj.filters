@@ -117,6 +117,9 @@
     <ClInclude Include="graphics\model_loaders\SimpleModelLoader.hpp">
       <Filter>Header Files\graphics\model_loaders</Filter>
     </ClInclude>
+    <ClInclude Include="graphics\model_loaders\ObjModelLoader.hpp">
+      <Filter>Header Files\graphics\model_loaders</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="system\Window.cpp">
@@ -170,6 +173,9 @@
     <ClCompile Include="graphics\model_loaders\SimpleModelLoader.cpp">
       <Filter>Source Files\graphics\model_loaders</Filter>
     </ClCompile>
+    <ClCompile Include="graphics\model_loaders\ObjModelLoader.cpp">
+      <Filter>Source Files\graphics\model_loaders</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="graphics\IndexBuffer.hpp">
@@ -180,6 +186,9 @@
     </None>
     <None Include="data\shaders\pixel-shaders\basic.pixel.hlsl">
       <Filter>Resource Files\shaders\pixel-shaders</Filter>
+    </None>
+    <None Include="data\models\cube.model">
+      <Filter>Resource Files\models</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

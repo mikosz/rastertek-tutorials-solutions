@@ -33,13 +33,13 @@ public:
 
 	typedef boost::uint32_t Index;
 
-	struct Face {
+	struct Group {
 
 		Topology topology;
 
 		size_t firstIndexIndex;
 
-		Face(Topology topology) :
+		Group(Topology topology) :
 			topology(topology),
 			firstIndexIndex(0)
 		{
@@ -47,7 +47,7 @@ public:
 
 	};
 
-	typedef std::vector<Face> Faces;
+	typedef std::vector<Group> Groups;
 
 	typedef std::vector<Vertex> Vertices;
 
@@ -59,14 +59,14 @@ public:
 
 	void reset();
 
-	void addFace(Topology topology);
+	void addGroup(Topology topology);
 
 	void addVertex(const Vertex& vertex);
 
 	void addIndex(Index index);
 
-	const Faces& faces() const {
-		return faces_;
+	const Groups& groups() const {
+		return groups_;
 	}
 
 	const Vertices& vertices() const {
@@ -79,7 +79,7 @@ public:
 
 private:
 
-	Faces faces_;
+	Groups groups_;
 
 	Vertices vertices_;
 

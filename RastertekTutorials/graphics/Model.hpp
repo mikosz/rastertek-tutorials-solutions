@@ -60,7 +60,7 @@ private:
 
 	IndexBuffer indexBuffer_;
 
-	model_loaders::ModelData::Faces facesData_;
+	model_loaders::ModelData::Groups groupData_;
 
 	Texture texture_;
 
