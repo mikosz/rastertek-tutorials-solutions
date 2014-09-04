@@ -1,6 +1,7 @@
 #include "ObjModelLoader.hpp"
 
 #include <fstream>
+#include <numeric>
 
 #include <boost/spirit/include/qi.hpp>
 #include <boost/spirit/include/phoenix.hpp>
@@ -9,6 +10,10 @@
 #include <boost/unordered_map.hpp>
 
 #include "ModelData.hpp"
+
+#if defined(max)
+#	undef max
+#endif /* defined(max) */
 
 using namespace tutorials;
 using namespace tutorials::graphics;
@@ -108,7 +113,6 @@ public:
 		}
 
 		bool hasFaces = false;
-		boost::unordered_map<Vertex, size_t, VertexHash> vertexIndices;
 		
 		for (size_t objectIndex = 0; objectIndex < objects_.size(); ++objectIndex) {
 			const Object& object = objects_[objectIndex];
@@ -116,6 +120,9 @@ public:
 
 			if (hasFaces) {
 				data->addGroup(ModelData::TRIANGLE_LIST);
+
+				bool normalsNeedGeneration = false;
+				boost::unordered_map<Vertex, size_t, VertexHash> vertexIndices;
 
 				for (size_t faceIndex = 0; faceIndex < object.faces.size(); ++faceIndex) {
 					const Face& face = object.faces[faceIndex];
@@ -128,7 +135,12 @@ public:
 						} else {
 							ModelData::Vertex vertexData;
 							vertexData.position = positions_[vertex.positionIndex];
-							vertexData.normal = normals_[vertex.normalIndex];
+							if (vertex.normalIndex != NORMAL_NEEDS_GENERATION_INDEX) {
+								vertexData.normal = normals_[vertex.normalIndex];
+							} else {
+								normalsNeedGeneration = true;
+								vertexData.normal = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+							}
 							vertexData.textureCoordinate = textureCoordinates_[vertex.textureCoordinateIndex];
 							data->addVertex(vertexData);
 
@@ -138,6 +150,8 @@ public:
 						}
 					}
 				}
+
+				data->generateNormals();
 			}
 		}
 
@@ -161,6 +175,8 @@ public:
 	}
 
 private:
+
+	const size_t NORMAL_NEEDS_GENERATION_INDEX = std::numeric_limits<size_t>::max();
 
 	typedef qi::rule<spirit::istream_iterator, void(), ascii::blank_type> Rule;
 
@@ -201,14 +217,19 @@ private:
 	Normals normals_;
 
 	Vertex makeVertex(const std::vector<size_t>& vertexData) {
-		if (vertexData.size() != 3) {
-			throw std::runtime_error("Vertex data has size different than 3");
+		if (vertexData.size() != 3 && vertexData.size() != 2) {
+			throw std::runtime_error("Vertex data has size different than 2 and 3");
 		}
 
 		Vertex vertex;
 		vertex.positionIndex = vertexData[0] - 1;
 		vertex.textureCoordinateIndex = vertexData[1] - 1;
-		vertex.normalIndex = vertexData[2] - 1;
+
+		if (vertexData.size() == 3) {
+			vertex.normalIndex = vertexData[2] - 1;
+		} else {
+			vertex.normalIndex = NORMAL_NEEDS_GENERATION_INDEX;
+		}
 
 		return vertex;
 	}
@@ -226,6 +247,7 @@ private:
 		storedFace.vertices[0] = face[0];
 		storedFace.vertices[2] = face[1];
 		storedFace.vertices[1] = face[2];
+
 		objects_.back().faces.push_back(storedFace);
 	}
 

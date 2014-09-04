@@ -65,6 +65,8 @@ public:
 
 	void addIndex(Index index);
 
+	void generateNormals();
+
 	const Groups& groups() const {
 		return groups_;
 	}
@@ -86,6 +88,8 @@ private:
 	Indices indices_;
 
 	size_t maxIndex_;
+
+	void generateNormal(size_t indexIndex);
 
 };
 

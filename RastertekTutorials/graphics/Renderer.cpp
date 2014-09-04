@@ -33,8 +33,9 @@ void Renderer::renderFrame(const Camera& camera) {
 		vertexShader_.bind(device_.d3dDeviceContext(), matrixBuffer);
 
 		PixelShader::LightBuffer lightBuffer;
+		lightBuffer.ambientColour = D3DXVECTOR4(0.1f, 0.1f, 0.1f, 1.0f);
 		lightBuffer.diffuseColour = D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f);
-		lightBuffer.lightDirection = D3DXVECTOR3(0.0f, 0.0f, 1.0f);
+		lightBuffer.lightDirection = D3DXVECTOR3(1.0f, 0.0f, 0.0f);
 
 		pixelShader_.bind(device_.d3dDeviceContext(), &(*it)->texture(), lightBuffer);
 

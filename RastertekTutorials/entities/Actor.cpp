@@ -8,8 +8,8 @@ using namespace tutorials::entities;
 Actor::Actor(graphics::Renderer* renderer) {
 	graphics::model_loaders::ModelData data;
 	graphics::model_loaders::ObjModelLoader loader;
-	loader.load(&data, "data/models/Daniel/craig chemise bleu/craig chemis bleu.obj");
-	// loader.load(&data, "data/models/cube.model");
+	// loader.load(&data, "data/models/Daniel/craig chemise bleu/craig chemis bleu.obj");
+	loader.load(&data, "data/models/cube.model");
 
 	model_.initialise(&renderer->device(), data);
 

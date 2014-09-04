@@ -16,6 +16,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pScmdline,
 		std::ostringstream error;
 		error << "Caught exception: " << e.what() << '\n';
 
+		OutputDebugString(error.str().c_str());
 		MessageBox(0, error.str().c_str(), "Error", 0);
 
 		return 1;

@@ -19,6 +19,7 @@ class PixelShader {
 public:
 
 	struct LightBuffer {
+		D3DXVECTOR4 ambientColour;
 		D3DXVECTOR4 diffuseColour;
 		D3DXVECTOR3 lightDirection;
 
