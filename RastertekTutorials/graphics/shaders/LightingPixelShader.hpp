@@ -1,5 +1,5 @@
-#ifndef _GRAPHICS_PIXELSHADER_HPP_
-#define _GRAPHICS_PIXELSHADER_HPP_
+#ifndef _GRAPHICS_LIGHTINGPIXELSHADER_HPP_
+#define _GRAPHICS_LIGHTINGPIXELSHADER_HPP_
 
 #include <string>
 
@@ -8,14 +8,16 @@
 #include <d3d11.h>
 #include <D3DX10math.h>
 
-#include "Texture.hpp"
-#include "ShaderConstantsBuffer.hpp"
+#include "PixelShader.hpp"
+#include "../Texture.hpp"
+#include "../ShaderConstantsBuffer.hpp"
 #include "utils/COMWrapper.hpp"
 
 namespace tutorials {
 namespace graphics {
+namespace shaders {
 
-class PixelShader {
+class LightingPixelShader : public PixelShader {
 public:
 
 	struct LightBuffer {
@@ -44,15 +46,14 @@ public:
 
 private:
 
-	utils::COMWrapper<ID3D11PixelShader> shader_;
-
 	utils::COMWrapper<ID3D11SamplerState> samplerState_;
 
 	ShaderConstantsBuffer lightBuffer_;
 
 };
 
+} // namespace shaders
 } // namespace graphics
 } // namespace tutorials
 
-#endif /* _GRAPHICS_PIXELSHADER_HPP_ */
+#endif /* _GRAPHICS_LIGHTINGPIXELSHADER_HPP_ */

@@ -2,6 +2,7 @@
 
 #include "Device.hpp"
 #include "Camera.hpp"
+#include "shaders/LightingVertexShader.hpp"
 
 using namespace tutorials;
 using namespace tutorials::graphics;
@@ -32,7 +33,7 @@ void Model::initialise(Device* device, const model_loaders::ModelData& data) {
 		device->d3dDevice(),
 		&data.vertices().front(),
 		data.vertices().size(),
-		sizeof(VertexShader::Vertex)
+		sizeof(shaders::LightingVertexShader::Vertex)
 		);
 
 	// TODO: change indices type to uint16 if possible here (depending on max index)

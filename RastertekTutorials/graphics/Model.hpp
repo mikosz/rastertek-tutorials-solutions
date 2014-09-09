@@ -5,7 +5,6 @@
 
 #include <boost/filesystem/path.hpp>
 
-#include "VertexShader.hpp"
 #include "VertexBuffer.hpp"
 #include "IndexBuffer.hpp"
 #include "Texture.hpp"

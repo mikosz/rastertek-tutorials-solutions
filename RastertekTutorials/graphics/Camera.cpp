@@ -3,18 +3,10 @@
 using namespace tutorials;
 using namespace tutorials::graphics;
 
-Camera::Camera(const Properties& properties) {
-	reset(properties);
-}
+D3DXVECTOR3 Camera::position() const {
+	D3DXMATRIX viewToWorld;
+	D3DXMatrixInverse(&viewToWorld, 0, &viewMatrix());
 
-void Camera::reset(const Properties& properties) {
-	currentProperties_ = properties;
-	D3DXMatrixLookAtLH(&viewMatrix_, &properties.position, &properties.lookAt, &properties.up);
-	D3DXMatrixPerspectiveFovLH(
-		&projectionMatrix_,
-		properties.fieldOfView,
-		properties.aspectRatio,
-		properties.nearPlane,
-		properties.farPlane
-		);
+	D3DXVECTOR3 position(viewToWorld._41, viewToWorld._42, viewToWorld._43);
+	return position;
 }

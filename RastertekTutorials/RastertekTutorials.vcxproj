@@ -72,6 +72,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="entities\Actor.hpp" />
+    <ClInclude Include="graphics\A2DCamera.hpp" />
+    <ClInclude Include="graphics\A3DCamera.hpp" />
     <ClInclude Include="graphics\Buffer.hpp" />
     <ClInclude Include="graphics\Camera.hpp" />
     <ClInclude Include="graphics\Device.hpp" />
@@ -81,11 +83,13 @@
     <ClInclude Include="graphics\model_loaders\SimpleModelLoader.hpp" />
     <ClInclude Include="graphics\ShaderConstantsBuffer.hpp" />
     <ClInclude Include="graphics\Model.hpp" />
-    <ClInclude Include="graphics\PixelShader.hpp" />
     <ClInclude Include="graphics\Renderer.hpp" />
+    <ClInclude Include="graphics\shaders\LightingPixelShader.hpp" />
+    <ClInclude Include="graphics\shaders\LightingVertexShader.hpp" />
+    <ClInclude Include="graphics\shaders\PixelShader.hpp" />
+    <ClInclude Include="graphics\shaders\VertexShader.hpp" />
     <ClInclude Include="graphics\Texture.hpp" />
     <ClInclude Include="graphics\VertexBuffer.hpp" />
-    <ClInclude Include="graphics\VertexShader.hpp" />
     <ClInclude Include="system\System.hpp" />
     <ClInclude Include="system\SystemContext.hpp" />
     <ClInclude Include="system\Window.hpp" />
@@ -95,7 +99,9 @@
   <ItemGroup>
     <ClCompile Include="entities\Actor.cpp" />
     <ClCompile Include="game\main.cpp" />
+    <ClCompile Include="graphics\A2DCamera.cpp" />
     <ClCompile Include="graphics\Buffer.cpp" />
+    <ClCompile Include="graphics\A3DCamera.cpp" />
     <ClCompile Include="graphics\Camera.cpp" />
     <ClCompile Include="graphics\Device.cpp" />
     <ClCompile Include="graphics\model_loaders\ModelData.cpp" />
@@ -104,24 +110,39 @@
     <ClCompile Include="graphics\ShaderConstantsBuffer.cpp" />
     <ClCompile Include="graphics\IndexBuffer.cpp" />
     <ClCompile Include="graphics\Model.cpp" />
-    <ClCompile Include="graphics\PixelShader.cpp" />
     <ClCompile Include="graphics\Renderer.cpp" />
+    <ClCompile Include="graphics\shaders\LightingPixelShader.cpp" />
+    <ClCompile Include="graphics\shaders\LightingVertexShader.cpp" />
+    <ClCompile Include="graphics\shaders\PixelShader.cpp" />
+    <ClCompile Include="graphics\shaders\VertexShader.cpp" />
     <ClCompile Include="graphics\Texture.cpp" />
     <ClCompile Include="graphics\VertexBuffer.cpp" />
-    <ClCompile Include="graphics\VertexShader.cpp" />
     <ClCompile Include="system\System.cpp" />
     <ClCompile Include="system\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="data\models\cube.model" />
     <None Include="data\models\jola.model" />
-    <None Include="data\shaders\pixel-shaders\basic.pixel.hlsl" />
+    <FxCompile Include="data\shaders\pixel-shaders\lighting.pixel.hlsl">
+      <FileType>Document</FileType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">5.0</ShaderModel>
+    </FxCompile>
     <None Include="graphics\IndexBuffer.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="data\shaders\vertex-shaders\basic.vertex.hlsl">
+    <FxCompile Include="data\shaders\pixel-shaders\sprite.pixel.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">5.0</ShaderModel>
+    </FxCompile>
+    <FxCompile Include="data\shaders\vertex-shaders\lighting.vertex.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">5.0</ShaderModel>
+    </FxCompile>
+    <FxCompile Include="data\shaders\vertex-shaders\sprite.vertex.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">5.0</ShaderModel>
     </FxCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

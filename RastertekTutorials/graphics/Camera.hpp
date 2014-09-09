@@ -9,47 +9,16 @@ namespace graphics {
 class Camera {
 public:
 
-	struct Properties {
+	virtual const D3DXMATRIX& viewMatrix() const = 0;
 
-		D3DXVECTOR3 position;
+	virtual const D3DXMATRIX& projectionMatrix() const = 0;
 
-		D3DXVECTOR3 up;
+	D3DXVECTOR3 position() const;
 
-		D3DXVECTOR3 lookAt;
+protected:
 
-		float fieldOfView;
-
-		float aspectRatio;
-
-		float nearPlane;
-		
-		float farPlane;
-
-	};
-
-	Camera(const Properties& properties);
-
-	void reset(const Properties& properties);
-
-	const D3DXMATRIX& viewMatrix() const {
-		return viewMatrix_;
+	virtual ~Camera() {
 	}
-
-	const D3DXMATRIX& projectionMatrix() const {
-		return projectionMatrix_;
-	}
-
-	const D3DXVECTOR3& position() const {
-		return currentProperties_.position;
-	}
-
-private:
-
-	Properties currentProperties_;
-
-	D3DXMATRIX viewMatrix_;
-
-	D3DXMATRIX projectionMatrix_;
 
 };
 

@@ -1,5 +1,5 @@
-#ifndef _GRAPHICS_VERTEXSHADER_HPP_
-#define _GRAPHICS_VERTEXSHADER_HPP_
+#ifndef _GRAPHICS_LIGHTINGVERTEXSHADER_HPP_
+#define _GRAPHICS_LIGHTINGVERTEXSHADER_HPP_
 
 #include <boost/filesystem/path.hpp>
 
@@ -7,14 +7,16 @@
 #include <d3dx10math.h>
 #include <d3dx11async.h>
 
-#include "Device.hpp"
-#include "ShaderConstantsBuffer.hpp"
+#include "VertexShader.hpp"
+#include "../Device.hpp"
+#include "../ShaderConstantsBuffer.hpp"
 #include "utils/COMWrapper.hpp"
 
 namespace tutorials {
 namespace graphics {
+namespace shaders {
 
-class VertexShader {
+class LightingVertexShader : public VertexShader {
 public:
 
 	struct MatrixBuffer {
@@ -35,12 +37,6 @@ public:
 		D3DXVECTOR3 normal;
 	};
 
-	static utils::COMWrapper<ID3D10Blob> compileShader(
-		ID3D11Device* device,
-		const boost::filesystem::path& path,
-		const std::string& function
-		);
-
 	void initialise(ID3D11Device* device, utils::COMWrapper<ID3D10Blob> shaderBuffer);
 
 	void reset();
@@ -53,8 +49,6 @@ public:
 
 private:
 
-	utils::COMWrapper<ID3D11VertexShader> shader_;
-
 	utils::COMWrapper<ID3D11InputLayout> inputLayout_;
 
 	ShaderConstantsBuffer matrixBuffer_;
@@ -63,7 +57,8 @@ private:
 
 };
 
+} // namespace shaders
 } // namespace graphics
 } // namespace tutorials
 
-#endif /* _GRAPHICS_VERTEXSHADER_HPP_ */
+#endif /* _GRAPHICS_LIGHTINGVERTEXSHADER_HPP_ */

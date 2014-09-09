@@ -1,6 +1,7 @@
 #include "System.hpp"
 
 #include "entities/Actor.hpp"
+#include "graphics/A3DCamera.hpp"
 
 #include <boost/bind.hpp>
 #include <boost/date_time/posix_time/posix_time.hpp>
@@ -50,7 +51,7 @@ void System::shutdown() {
 int System::run() {
 	entities::Actor actor(&renderer_);
 
-	graphics::Camera::Properties properties;
+	graphics::A3DCamera::Properties properties;
 	properties.aspectRatio = 800.0f / 600.0f;
 	properties.nearPlane = 0.1f;
 	properties.farPlane = 1000.0f;
@@ -59,7 +60,7 @@ int System::run() {
 	properties.position = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	properties.up = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
 
-	graphics::Camera camera(properties);
+	graphics::A3DCamera camera(properties);
 
 	boost::posix_time::ptime lastFrameEnd = boost::posix_time::microsec_clock::universal_time();
 	boost::posix_time::time_duration lastFrameDuration;

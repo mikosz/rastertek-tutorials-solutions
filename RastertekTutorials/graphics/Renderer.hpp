@@ -11,8 +11,8 @@
 #include "Device.hpp"
 #include "Model.hpp"
 #include "Camera.hpp"
-#include "VertexShader.hpp"
-#include "PixelShader.hpp"
+#include "shaders/LightingVertexShader.hpp"
+#include "shaders/LightingPixelShader.hpp"
 
 namespace tutorials {
 namespace graphics {
@@ -44,9 +44,9 @@ private:
 
 	std::list<Model*> pipeline_;
 
-	VertexShader vertexShader_;
+	shaders::LightingVertexShader vertexShader_;
 
-	PixelShader pixelShader_;
+	shaders::LightingPixelShader pixelShader_;
 
 };
 

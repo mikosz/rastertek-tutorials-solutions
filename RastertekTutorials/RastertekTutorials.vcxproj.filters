@@ -58,6 +58,12 @@
     <Filter Include="Source Files\graphics\model_loaders">
       <UniqueIdentifier>{8d64473b-9cdc-4b56-af7c-ea7eb362f4c6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\graphics\shaders">
+      <UniqueIdentifier>{931b1bf2-6db4-45e6-bdca-2df3fc17dc3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics\shaders">
+      <UniqueIdentifier>{485b4b31-3299-4595-a4c5-13f9c6537641}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="system\Window.hpp">
@@ -90,16 +96,10 @@
     <ClInclude Include="utils\Timer.hpp">
       <Filter>Header Files\utils</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\VertexShader.hpp">
-      <Filter>Header Files\graphics</Filter>
-    </ClInclude>
     <ClInclude Include="graphics\Buffer.hpp">
       <Filter>Header Files\graphics</Filter>
     </ClInclude>
     <ClInclude Include="graphics\VertexBuffer.hpp">
-      <Filter>Header Files\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\PixelShader.hpp">
       <Filter>Header Files\graphics</Filter>
     </ClInclude>
     <ClInclude Include="graphics\ShaderConstantsBuffer.hpp">
@@ -120,6 +120,24 @@
     <ClInclude Include="graphics\model_loaders\ObjModelLoader.hpp">
       <Filter>Header Files\graphics\model_loaders</Filter>
     </ClInclude>
+    <ClInclude Include="graphics\A2DCamera.hpp">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\A3DCamera.hpp">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\shaders\PixelShader.hpp">
+      <Filter>Header Files\graphics\shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\shaders\VertexShader.hpp">
+      <Filter>Header Files\graphics\shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\shaders\LightingPixelShader.hpp">
+      <Filter>Header Files\graphics\shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\shaders\LightingVertexShader.hpp">
+      <Filter>Header Files\graphics\shaders</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="system\Window.cpp">
@@ -137,14 +155,8 @@
     <ClCompile Include="graphics\Renderer.cpp">
       <Filter>Source Files\graphics</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\Camera.cpp">
-      <Filter>Source Files\graphics</Filter>
-    </ClCompile>
     <ClCompile Include="entities\Actor.cpp">
       <Filter>Source Files\entities</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\VertexShader.cpp">
-      <Filter>Source Files\graphics</Filter>
     </ClCompile>
     <ClCompile Include="graphics\Buffer.cpp">
       <Filter>Source Files\graphics</Filter>
@@ -156,9 +168,6 @@
       <Filter>Source Files\graphics</Filter>
     </ClCompile>
     <ClCompile Include="graphics\Model.cpp">
-      <Filter>Source Files\graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\PixelShader.cpp">
       <Filter>Source Files\graphics</Filter>
     </ClCompile>
     <ClCompile Include="graphics\ShaderConstantsBuffer.cpp">
@@ -176,6 +185,27 @@
     <ClCompile Include="graphics\model_loaders\ObjModelLoader.cpp">
       <Filter>Source Files\graphics\model_loaders</Filter>
     </ClCompile>
+    <ClCompile Include="graphics\A3DCamera.cpp">
+      <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\A2DCamera.cpp">
+      <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\shaders\PixelShader.cpp">
+      <Filter>Source Files\graphics\shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\shaders\VertexShader.cpp">
+      <Filter>Source Files\graphics\shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\Camera.cpp">
+      <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\shaders\LightingPixelShader.cpp">
+      <Filter>Source Files\graphics\shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\shaders\LightingVertexShader.cpp">
+      <Filter>Source Files\graphics\shaders</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="graphics\IndexBuffer.hpp">
@@ -184,16 +214,22 @@
     <None Include="data\models\jola.model">
       <Filter>Resource Files\models</Filter>
     </None>
-    <None Include="data\shaders\pixel-shaders\basic.pixel.hlsl">
-      <Filter>Resource Files\shaders\pixel-shaders</Filter>
-    </None>
     <None Include="data\models\cube.model">
       <Filter>Resource Files\models</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="data\shaders\vertex-shaders\basic.vertex.hlsl">
+    <FxCompile Include="data\shaders\vertex-shaders\lighting.vertex.hlsl">
       <Filter>Resource Files\shaders\vertex-shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="data\shaders\pixel-shaders\sprite.pixel.hlsl">
+      <Filter>Resource Files\shaders\pixel-shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="data\shaders\vertex-shaders\sprite.vertex.hlsl">
+      <Filter>Resource Files\shaders\vertex-shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="data\shaders\pixel-shaders\lighting.pixel.hlsl">
+      <Filter>Resource Files\shaders\pixel-shaders</Filter>
     </FxCompile>
   </ItemGroup>
 </Project>
