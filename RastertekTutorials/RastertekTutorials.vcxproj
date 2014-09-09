@@ -87,6 +87,8 @@
     <ClInclude Include="graphics\shaders\LightingPixelShader.hpp" />
     <ClInclude Include="graphics\shaders\LightingVertexShader.hpp" />
     <ClInclude Include="graphics\shaders\PixelShader.hpp" />
+    <ClInclude Include="graphics\shaders\SpritePixelShader.hpp" />
+    <ClInclude Include="graphics\shaders\SpriteVertexShader.hpp" />
     <ClInclude Include="graphics\shaders\VertexShader.hpp" />
     <ClInclude Include="graphics\Texture.hpp" />
     <ClInclude Include="graphics\VertexBuffer.hpp" />
@@ -114,6 +116,8 @@
     <ClCompile Include="graphics\shaders\LightingPixelShader.cpp" />
     <ClCompile Include="graphics\shaders\LightingVertexShader.cpp" />
     <ClCompile Include="graphics\shaders\PixelShader.cpp" />
+    <ClCompile Include="graphics\shaders\SpritePixelShader.cpp" />
+    <ClCompile Include="graphics\shaders\SpriteVertexShader.cpp" />
     <ClCompile Include="graphics\shaders\VertexShader.cpp" />
     <ClCompile Include="graphics\Texture.cpp" />
     <ClCompile Include="graphics\VertexBuffer.cpp" />

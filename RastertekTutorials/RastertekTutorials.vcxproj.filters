@@ -138,6 +138,12 @@
     <ClInclude Include="graphics\shaders\LightingVertexShader.hpp">
       <Filter>Header Files\graphics\shaders</Filter>
     </ClInclude>
+    <ClInclude Include="graphics\shaders\SpritePixelShader.hpp">
+      <Filter>Header Files\graphics\shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\shaders\SpriteVertexShader.hpp">
+      <Filter>Header Files\graphics\shaders</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="system\Window.cpp">
@@ -204,6 +210,12 @@
       <Filter>Source Files\graphics\shaders</Filter>
     </ClCompile>
     <ClCompile Include="graphics\shaders\LightingVertexShader.cpp">
+      <Filter>Source Files\graphics\shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\shaders\SpritePixelShader.cpp">
+      <Filter>Source Files\graphics\shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\shaders\SpriteVertexShader.cpp">
       <Filter>Source Files\graphics\shaders</Filter>
     </ClCompile>
   </ItemGroup>

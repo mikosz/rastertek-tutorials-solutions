@@ -13,6 +13,8 @@
 #include "Camera.hpp"
 #include "shaders/LightingVertexShader.hpp"
 #include "shaders/LightingPixelShader.hpp"
+#include "shaders/SpritePixelShader.hpp"
+#include "shaders/SpriteVertexShader.hpp"
 
 namespace tutorials {
 namespace graphics {
@@ -44,9 +46,13 @@ private:
 
 	std::list<Model*> pipeline_;
 
-	shaders::LightingVertexShader vertexShader_;
+	shaders::LightingVertexShader worldVertexShader_;
 
-	shaders::LightingPixelShader pixelShader_;
+	shaders::LightingPixelShader worldPixelShader_;
+
+	shaders::SpriteVertexShader hudVertexShader_;
+
+	shaders::SpritePixelShader hudPixelShader_;
 
 };
 

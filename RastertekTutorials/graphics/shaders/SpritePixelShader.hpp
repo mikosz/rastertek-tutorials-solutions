@@ -1,5 +1,5 @@
-#ifndef _GRAPHICS_LIGHTINGPIXELSHADER_HPP_
-#define _GRAPHICS_LIGHTINGPIXELSHADER_HPP_
+#ifndef _GRAPHICS_SPRITEPIXELSHADER_HPP_
+#define _GRAPHICS_SPRITEPIXELSHADER_HPP_
 
 #include <string>
 
@@ -17,16 +17,8 @@ namespace tutorials {
 namespace graphics {
 namespace shaders {
 
-class LightingPixelShader : public PixelShader {
+class SpritePixelShader : public PixelShader {
 public:
-
-	struct LightBuffer {
-		D3DXVECTOR4 ambientColour;
-		D3DXVECTOR4 diffuseColour;
-		D3DXVECTOR3 lightDirection;
-		float specularPower;
-		D3DXVECTOR4 specularColour;
-	};
 
 	void initialise(ID3D11Device* device, utils::COMWrapper<ID3D10Blob> shaderBuffer);
 
@@ -34,15 +26,12 @@ public:
 
 	void bind(
 		ID3D11DeviceContext* deviceContext,
-		Texture* texture,
-		const LightBuffer& lightBuffer
+		Texture* texture
 		);
 
 private:
 
 	utils::COMWrapper<ID3D11SamplerState> samplerState_;
-
-	ShaderConstantsBuffer lightBuffer_;
 
 };
 
@@ -50,4 +39,4 @@ private:
 } // namespace graphics
 } // namespace tutorials
 
-#endif /* _GRAPHICS_LIGHTINGPIXELSHADER_HPP_ */
+#endif /* _GRAPHICS_SPRITEPIXELSHADER_HPP_ */
