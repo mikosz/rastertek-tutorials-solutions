@@ -176,7 +176,7 @@ public:
 
 private:
 
-	const size_t NORMAL_NEEDS_GENERATION_INDEX = std::numeric_limits<size_t>::max();
+	static const size_t NORMAL_NEEDS_GENERATION_INDEX;
 
 	typedef qi::rule<spirit::istream_iterator, void(), ascii::blank_type> Rule;
 
@@ -277,6 +277,8 @@ private:
 	}
 
 };
+
+const size_t ObjModelParser::NORMAL_NEEDS_GENERATION_INDEX = std::numeric_limits<size_t>::max();
 
 } // anonymous namespace
 

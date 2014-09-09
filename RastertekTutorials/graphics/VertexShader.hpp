@@ -23,6 +23,12 @@ public:
 		D3DXMATRIX projection;
 	};
 
+	struct CameraBuffer {
+		D3DXVECTOR3 cameraPosition;
+
+		float padding_;
+	};
+
 	struct Vertex {
 		D3DXVECTOR3 position;
 		D3DXVECTOR2 textureCoord;
@@ -39,7 +45,11 @@ public:
 
 	void reset();
 
-	void bind(ID3D11DeviceContext* deviceContext, const MatrixBuffer& matrixBuffer);
+	void bind(
+		ID3D11DeviceContext* deviceContext,
+		const MatrixBuffer& matrixBuffer,
+		const CameraBuffer& cameraBuffer
+		);
 
 private:
 
@@ -48,6 +58,8 @@ private:
 	utils::COMWrapper<ID3D11InputLayout> inputLayout_;
 
 	ShaderConstantsBuffer matrixBuffer_;
+
+	ShaderConstantsBuffer cameraBuffer_;
 
 };
 

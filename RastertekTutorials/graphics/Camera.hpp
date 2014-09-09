@@ -39,7 +39,13 @@ public:
 		return projectionMatrix_;
 	}
 
+	const D3DXVECTOR3& position() const {
+		return currentProperties_.position;
+	}
+
 private:
+
+	Properties currentProperties_;
 
 	D3DXMATRIX viewMatrix_;
 

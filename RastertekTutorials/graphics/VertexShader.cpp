@@ -84,15 +84,21 @@ void VertexShader::initialise(ID3D11Device* device, utils::COMWrapper<ID3D10Blob
 	}
 
 	matrixBuffer_.initialise(device, sizeof(MatrixBuffer));
+	cameraBuffer_.initialise(device, sizeof(CameraBuffer));
 }
 
 void VertexShader::reset() {
 	shader_.reset();
 	inputLayout_.reset();
 	matrixBuffer_.reset();
+	cameraBuffer_.reset();
 }
 
-void VertexShader::bind(ID3D11DeviceContext* deviceContext, const MatrixBuffer& matrixBuffer) {
+void VertexShader::bind(
+	ID3D11DeviceContext* deviceContext,
+	const MatrixBuffer& matrixBuffer,
+	const CameraBuffer& cameraBuffer
+	) {
 	MatrixBuffer transposed;
 	D3DXMatrixTranspose(&transposed.world, &matrixBuffer.world);
 	D3DXMatrixTranspose(&transposed.view, &matrixBuffer.view);
@@ -100,6 +106,9 @@ void VertexShader::bind(ID3D11DeviceContext* deviceContext, const MatrixBuffer& 
 
 	matrixBuffer_.write(deviceContext, &transposed, sizeof(transposed));
 	matrixBuffer_.bind(deviceContext, ShaderConstantsBuffer::VERTEX, 0);
+
+	cameraBuffer_.write(deviceContext, &cameraBuffer, sizeof(CameraBuffer));
+	cameraBuffer_.bind(deviceContext, ShaderConstantsBuffer::PIXEL, 1);
 
 	deviceContext->IASetInputLayout(inputLayout_);
 	deviceContext->VSSetShader(shader_, 0, 0);

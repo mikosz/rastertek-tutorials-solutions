@@ -70,7 +70,11 @@ void PixelShader::reset() {
 	lightBuffer_.reset();
 }
 
-void PixelShader::bind(ID3D11DeviceContext* deviceContext, Texture* texture, const LightBuffer& lightBuffer) {
+void PixelShader::bind(
+	ID3D11DeviceContext* deviceContext,
+	Texture* texture,
+	const LightBuffer& lightBuffer
+	) {
 	ID3D11ShaderResourceView* resource = texture->resource();
 	deviceContext->PSSetShaderResources(0, 1, &resource);
 

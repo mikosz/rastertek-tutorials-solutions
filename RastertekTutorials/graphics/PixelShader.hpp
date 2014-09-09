@@ -22,8 +22,8 @@ public:
 		D3DXVECTOR4 ambientColour;
 		D3DXVECTOR4 diffuseColour;
 		D3DXVECTOR3 lightDirection;
-
-		float padding_;
+		float specularPower;
+		D3DXVECTOR4 specularColour;
 	};
 
 	static utils::COMWrapper<ID3D10Blob> compileShader(
@@ -36,7 +36,11 @@ public:
 
 	void reset();
 
-	void bind(ID3D11DeviceContext* deviceContext, Texture* texture, const LightBuffer& lightBuffer);
+	void bind(
+		ID3D11DeviceContext* deviceContext,
+		Texture* texture,
+		const LightBuffer& lightBuffer
+		);
 
 private:
 

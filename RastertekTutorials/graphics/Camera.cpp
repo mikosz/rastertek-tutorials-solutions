@@ -8,6 +8,7 @@ Camera::Camera(const Properties& properties) {
 }
 
 void Camera::reset(const Properties& properties) {
+	currentProperties_ = properties;
 	D3DXMatrixLookAtLH(&viewMatrix_, &properties.position, &properties.lookAt, &properties.up);
 	D3DXMatrixPerspectiveFovLH(
 		&projectionMatrix_,
