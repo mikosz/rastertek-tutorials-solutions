@@ -16,8 +16,8 @@ void A2DCamera::reset(const Properties& properties) {
 
 	D3DXMatrixOrthoLH(
 		&projectionMatrix_,
-		properties.viewWidth,
-		properties.viewHeight,
+		static_cast<float>(properties.viewWidth),
+		static_cast<float>(properties.viewHeight),
 		properties.nearPlane,
 		properties.farPlane
 		);

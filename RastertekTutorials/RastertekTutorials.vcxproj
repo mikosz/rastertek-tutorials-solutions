@@ -18,7 +18,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v120_xp</PlatformToolset>
+    <PlatformToolset>v110_xp</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -90,6 +90,8 @@
     <ClInclude Include="graphics\shaders\SpritePixelShader.hpp" />
     <ClInclude Include="graphics\shaders\SpriteVertexShader.hpp" />
     <ClInclude Include="graphics\shaders\VertexShader.hpp" />
+    <ClInclude Include="graphics\Sprite.hpp" />
+    <ClInclude Include="graphics\SpriteModel.hpp" />
     <ClInclude Include="graphics\Texture.hpp" />
     <ClInclude Include="graphics\VertexBuffer.hpp" />
     <ClInclude Include="system\System.hpp" />
