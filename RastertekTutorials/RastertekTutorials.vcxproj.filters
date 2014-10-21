@@ -64,6 +64,12 @@
     <Filter Include="Source Files\graphics\shaders">
       <UniqueIdentifier>{485b4b31-3299-4595-a4c5-13f9c6537641}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\input">
+      <UniqueIdentifier>{bf08274f-b21a-498e-828a-902f6fe32722}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\input">
+      <UniqueIdentifier>{baa6df0b-150a-4e80-ac5d-ef741987c429}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="system\Window.hpp">
@@ -144,6 +150,15 @@
     <ClInclude Include="graphics\shaders\SpriteVertexShader.hpp">
       <Filter>Header Files\graphics\shaders</Filter>
     </ClInclude>
+    <ClInclude Include="input\Input.hpp">
+      <Filter>Header Files\input</Filter>
+    </ClInclude>
+    <ClInclude Include="input\Mouse.hpp">
+      <Filter>Header Files\input</Filter>
+    </ClInclude>
+    <ClInclude Include="input\Keyboard.hpp">
+      <Filter>Header Files\input</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="system\Window.cpp">
@@ -217,6 +232,15 @@
     </ClCompile>
     <ClCompile Include="graphics\shaders\SpriteVertexShader.cpp">
       <Filter>Source Files\graphics\shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="input\Input.cpp">
+      <Filter>Source Files\input</Filter>
+    </ClCompile>
+    <ClCompile Include="input\Keyboard.cpp">
+      <Filter>Source Files\input</Filter>
+    </ClCompile>
+    <ClCompile Include="input\Mouse.cpp">
+      <Filter>Source Files\input</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -65,6 +65,10 @@ public:
 
 	void addIndex(Index index);
 
+	void setTexture(const boost::filesystem::path& texture) {
+		texture_ = texture;
+	}
+
 	void generateNormals();
 
 	const Groups& groups() const {
@@ -79,6 +83,10 @@ public:
 		return indices_;
 	}
 
+	const boost::filesystem::path& texture() const {
+		return texture_;
+	}
+
 private:
 
 	Groups groups_;
@@ -88,6 +96,8 @@ private:
 	Indices indices_;
 
 	size_t maxIndex_;
+
+	boost::filesystem::path texture_;
 
 	void generateNormal(size_t indexIndex);
 

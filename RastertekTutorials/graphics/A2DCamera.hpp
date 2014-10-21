@@ -23,9 +23,7 @@ public:
 
 	};
 
-	A2DCamera(const Properties& properties);
-
-	void reset(const Properties& properties);
+	void initialise(const Properties& properties);
 
 	const D3DXMATRIX& viewMatrix() const {
 		return viewMatrix_;

@@ -3,11 +3,7 @@
 using namespace tutorials;
 using namespace tutorials::graphics;
 
-A2DCamera::A2DCamera(const Properties& properties) {
-	reset(properties);
-}
-
-void A2DCamera::reset(const Properties& properties) {
+void A2DCamera::initialise(const Properties& properties) {
 	D3DXMatrixIdentity(&viewMatrix_);
 	viewMatrix_._41 = properties.position.x;
 	viewMatrix_._42 = properties.position.y;
@@ -16,8 +12,8 @@ void A2DCamera::reset(const Properties& properties) {
 
 	D3DXMatrixOrthoLH(
 		&projectionMatrix_,
-		properties.viewWidth,
-		properties.viewHeight,
+		static_cast<float>(properties.viewWidth),
+		static_cast<float>(properties.viewHeight),
 		properties.nearPlane,
 		properties.farPlane
 		);

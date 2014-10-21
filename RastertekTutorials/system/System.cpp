@@ -1,7 +1,6 @@
 #include "System.hpp"
 
 #include "entities/Actor.hpp"
-#include "graphics/A3DCamera.hpp"
 
 #include <boost/bind.hpp>
 #include <boost/date_time/posix_time/posix_time.hpp>
@@ -10,6 +9,7 @@ using namespace tutorials;
 using namespace tutorials::system;
 
 System::System(const SystemContext& systemContext) :
+	systemContext_(systemContext),
 	applicationWindow_(systemContext),
 	close_(false)
 {
@@ -41,26 +41,26 @@ void System::initialise() {
 
 		renderer_.initialise(properties);
 	}
+
+	{
+		input::Input::Properties properties;
+		properties.systemContext = systemContext_;
+
+		input_.initialise(properties);
+	}
+
+	keyboard_.initialise(&input_, applicationWindow_.handle());
 }
 
 void System::shutdown() {
+	keyboard_.shutdown();
+	input_.shutdown();
 	renderer_.shutdown();
 	applicationWindow_.close();
 }
 
 int System::run() {
 	entities::Actor actor(&renderer_);
-
-	graphics::A3DCamera::Properties properties;
-	properties.aspectRatio = 800.0f / 600.0f;
-	properties.nearPlane = 0.1f;
-	properties.farPlane = 1000.0f;
-	properties.fieldOfView = static_cast<float>(D3DXToRadian(40.0f));
-	properties.lookAt = D3DXVECTOR3(0.0f, 0.0f, 1.0f);
-	properties.position = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-	properties.up = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
-
-	graphics::A3DCamera camera(properties);
 
 	boost::posix_time::ptime lastFrameEnd = boost::posix_time::microsec_clock::universal_time();
 	boost::posix_time::time_duration lastFrameDuration;
@@ -78,8 +78,15 @@ int System::run() {
 			continue;
 		}
 
+		keyboard_.update();
+
+		if (keyboard_.isPressed(DIK_ESCAPE)) {
+			close_ = true;
+			break;
+		}
+
 		actor.update(lastFrameDuration);
-		renderer_.renderFrame(camera);
+		renderer_.renderFrame();
 
 		boost::posix_time::ptime now = boost::posix_time::microsec_clock::universal_time();
 		lastFrameDuration = now - lastFrameEnd;

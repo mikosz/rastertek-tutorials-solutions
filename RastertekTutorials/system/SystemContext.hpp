@@ -18,6 +18,9 @@ struct SystemContext {
 
 	int iCmdshow;
 
+	SystemContext() {
+	}
+
 	SystemContext(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pScmdline, int iCmdshow) :
 		hInstance(hInstance),
 		hPrevInstance(hPrevInstance),

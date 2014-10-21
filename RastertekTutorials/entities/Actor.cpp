@@ -13,7 +13,7 @@ Actor::Actor(graphics::Renderer* renderer) {
 
 	model_.initialise(&renderer->device(), data);
 
-	renderer->addModel(&model_);
+	renderer->addWorldModel(&model_);
 
 	model_.moveTo(0.0f, 0.0f, 0.1f);
 }

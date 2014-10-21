@@ -10,7 +10,8 @@
 
 #include "Device.hpp"
 #include "Model.hpp"
-#include "Camera.hpp"
+#include "A3DCamera.hpp"
+#include "A2DCamera.hpp"
 #include "shaders/LightingVertexShader.hpp"
 #include "shaders/LightingPixelShader.hpp"
 #include "shaders/SpritePixelShader.hpp"
@@ -30,10 +31,14 @@ public:
 
 	void shutdown();
 
-	void renderFrame(const Camera& camera);
+	void renderFrame();
 
-	void addModel(Model* model) {
-		pipeline_.push_back(model);
+	void addWorldModel(Model* model) {
+		worldPipeline_.push_back(model);
+	}
+
+	void addHudModel(Model* model) {
+		hudPipeline_.push_back(model);
 	}
 
 	Device& device() {
@@ -44,15 +49,21 @@ private:
 
 	Device device_;
 
-	std::list<Model*> pipeline_;
+	std::list<Model*> worldPipeline_;
 
 	shaders::LightingVertexShader worldVertexShader_;
 
 	shaders::LightingPixelShader worldPixelShader_;
 
+	A3DCamera worldCamera_;
+
+	std::list<Model*> hudPipeline_;
+
 	shaders::SpriteVertexShader hudVertexShader_;
 
 	shaders::SpritePixelShader hudPixelShader_;
+
+	A2DCamera hudCamera_;
 
 };
 

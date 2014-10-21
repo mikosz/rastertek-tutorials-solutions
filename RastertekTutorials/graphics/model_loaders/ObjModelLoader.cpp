@@ -288,5 +288,7 @@ void ObjModelLoader::load(ModelData* modelData, const boost::filesystem::path& s
 	ObjModelParser parser;
 	parser.parse(&ifs, modelData);
 
+	modelData->setTexture("data/textures/jola.dds");
+
 	ifs.close();
 }

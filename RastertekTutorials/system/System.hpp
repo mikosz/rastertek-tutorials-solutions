@@ -8,6 +8,8 @@
 #include "Window.hpp"
 #include "SystemContext.hpp"
 #include "graphics/Renderer.hpp"
+#include "input/Input.hpp"
+#include "input/Keyboard.hpp"
 
 namespace tutorials {
 namespace system {
@@ -27,9 +29,15 @@ public:
 
 private:
 
+	system::SystemContext systemContext_;
+
 	Window applicationWindow_;
 
 	graphics::Renderer renderer_;
+
+	input::Input input_;
+
+	input::Keyboard keyboard_;
 
 	bool close_;
 

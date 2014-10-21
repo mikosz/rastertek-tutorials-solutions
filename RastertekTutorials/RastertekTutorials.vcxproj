@@ -92,6 +92,9 @@
     <ClInclude Include="graphics\shaders\VertexShader.hpp" />
     <ClInclude Include="graphics\Texture.hpp" />
     <ClInclude Include="graphics\VertexBuffer.hpp" />
+    <ClInclude Include="input\Input.hpp" />
+    <ClInclude Include="input\Keyboard.hpp" />
+    <ClInclude Include="input\Mouse.hpp" />
     <ClInclude Include="system\System.hpp" />
     <ClInclude Include="system\SystemContext.hpp" />
     <ClInclude Include="system\Window.hpp" />
@@ -121,6 +124,9 @@
     <ClCompile Include="graphics\shaders\VertexShader.cpp" />
     <ClCompile Include="graphics\Texture.cpp" />
     <ClCompile Include="graphics\VertexBuffer.cpp" />
+    <ClCompile Include="input\Input.cpp" />
+    <ClCompile Include="input\Keyboard.cpp" />
+    <ClCompile Include="input\Mouse.cpp" />
     <ClCompile Include="system\System.cpp" />
     <ClCompile Include="system\Window.cpp" />
   </ItemGroup>

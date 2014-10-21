@@ -45,7 +45,7 @@ void Model::initialise(Device* device, const model_loaders::ModelData& data) {
 
 	groupData_ = data.groups();
 
-	texture_.initialise(device->d3dDevice(), "data/textures/jola.dds");
+	texture_.initialise(device->d3dDevice(), data.texture());
 }
 
 void Model::reset() {
