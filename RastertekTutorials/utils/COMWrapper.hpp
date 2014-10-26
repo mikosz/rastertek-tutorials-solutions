@@ -35,7 +35,7 @@ public:
 	COMWrapper& operator =(const COMWrapper& other) {
 		if (&other != this) {
 			reset();
-			comObject_ = other->comObject_;
+			comObject_ = other.comObject_;
 			if (comObject_) {
 				comObject_->AddRef();
 			}

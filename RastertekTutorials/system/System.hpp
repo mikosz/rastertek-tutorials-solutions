@@ -7,6 +7,7 @@
 
 #include "Window.hpp"
 #include "SystemContext.hpp"
+#include "audio/Audio.hpp"
 #include "graphics/Renderer.hpp"
 #include "input/Input.hpp"
 #include "input/Keyboard.hpp"
@@ -34,6 +35,10 @@ private:
 	Window applicationWindow_;
 
 	graphics::Renderer renderer_;
+
+	audio::Audio audio_;
+
+	utils::COMWrapper<IDirectSoundBuffer8> backgroundMusic_;
 
 	input::Input input_;
 

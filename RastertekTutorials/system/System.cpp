@@ -42,6 +42,9 @@ void System::initialise() {
 		renderer_.initialise(properties);
 	}
 
+	audio_.initialise(applicationWindow_.handle());
+	backgroundMusic_ = audio_.loadWaveFile("data/audio/HugeWAV.wav");
+
 	{
 		input::Input::Properties properties;
 		properties.systemContext = systemContext_;
@@ -55,12 +58,16 @@ void System::initialise() {
 void System::shutdown() {
 	keyboard_.shutdown();
 	input_.shutdown();
+	backgroundMusic_.reset();
+	audio_.shutdown();
 	renderer_.shutdown();
 	applicationWindow_.close();
 }
 
 int System::run() {
 	entities::Actor actor(&renderer_);
+
+	audio_.play(backgroundMusic_);
 
 	boost::posix_time::ptime lastFrameEnd = boost::posix_time::microsec_clock::universal_time();
 	boost::posix_time::time_duration lastFrameDuration;

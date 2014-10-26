@@ -26,8 +26,10 @@ void Keyboard::initialise(Input* input, system::Window::Handle windowHandle) {
 }
 
 void Keyboard::shutdown() {
-	device_->Unacquire();
-	device_.reset();
+	if (device_) {
+		device_->Unacquire();
+		device_.reset();
+	}
 }
 
 void Keyboard::update() {
@@ -37,7 +39,8 @@ void Keyboard::update() {
 			break;
 		} else if (result == DIERR_INPUTLOST || result == DIERR_NOTACQUIRED) {
 			if (FAILED(device_->Acquire())) {
-				throw std::runtime_error("Failed to re-acquire the keyboard device");
+				std::memset(keyboardState_, 0, sizeof(keyboardState_));
+				break;
 			}
 		} else {
 			throw std::runtime_error("Failed to get keyboard state");

@@ -70,6 +70,12 @@
     <Filter Include="Source Files\input">
       <UniqueIdentifier>{baa6df0b-150a-4e80-ac5d-ef741987c429}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\audio">
+      <UniqueIdentifier>{274bf6a4-f235-47bd-b2e7-9d70f8491e4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\audio">
+      <UniqueIdentifier>{6f06fb26-977e-40b2-a0b1-5c92c262dcbb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="system\Window.hpp">
@@ -159,6 +165,9 @@
     <ClInclude Include="input\Keyboard.hpp">
       <Filter>Header Files\input</Filter>
     </ClInclude>
+    <ClInclude Include="audio\Audio.hpp">
+      <Filter>Header Files\audio</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="system\Window.cpp">
@@ -241,6 +250,9 @@
     </ClCompile>
     <ClCompile Include="input\Mouse.cpp">
       <Filter>Source Files\input</Filter>
+    </ClCompile>
+    <ClCompile Include="audio\Audio.cpp">
+      <Filter>Source Files\audio</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

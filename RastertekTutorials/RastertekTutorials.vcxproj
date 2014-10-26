@@ -71,6 +71,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="audio\Audio.hpp" />
     <ClInclude Include="entities\Actor.hpp" />
     <ClInclude Include="graphics\A2DCamera.hpp" />
     <ClInclude Include="graphics\A3DCamera.hpp" />
@@ -102,6 +103,7 @@
     <ClInclude Include="utils\Timer.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="audio\Audio.cpp" />
     <ClCompile Include="entities\Actor.cpp" />
     <ClCompile Include="game\main.cpp" />
     <ClCompile Include="graphics\A2DCamera.cpp" />
