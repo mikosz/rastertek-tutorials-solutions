@@ -88,6 +88,7 @@ void Renderer::renderFrame() {
 				&(*it)->baseTexture(),
 				&(*it)->detailTexture(),
 				&(*it)->bumpMap(),
+				&(*it)->specularHighlightsMap(),
 				lightBuffer,
 				2.0f
 				);

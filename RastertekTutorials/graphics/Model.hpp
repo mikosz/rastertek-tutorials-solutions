@@ -59,6 +59,10 @@ public:
 		return bumpMap_;
 	}
 
+	Texture& specularHighlightsMap() {
+		return specularHighlightsMap_;
+	}
+
 private:
 
 	D3DXMATRIX worldMatrix_;
@@ -74,6 +78,8 @@ private:
 	Texture detailTexture_;
 
 	Texture bumpMap_;
+
+	Texture specularHighlightsMap_;
 
 };
 

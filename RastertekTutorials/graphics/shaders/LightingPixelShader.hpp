@@ -24,7 +24,7 @@ public:
 		D3DXVECTOR4 ambientColour;
 		D3DXVECTOR4 diffuseColour;
 		D3DXVECTOR3 lightDirection;
-		float specularPower;
+		float specularPower; // ignored
 		D3DXVECTOR4 specularColour;
 		float gamma;
 
@@ -40,6 +40,7 @@ public:
 		Texture* baseTexture,
 		Texture* detailTexture,
 		Texture* bumpMap,
+		Texture* specularHighlightsMap,
 		const LightBuffer& lightBuffer,
 		float gamma
 		);

@@ -50,6 +50,8 @@ void Model::initialise(Device* device, const model_loaders::ModelData& data) {
 	detailTexture_.initialise(device->d3dDevice(), data.detailTexture());
 
 	bumpMap_.initialise(device->d3dDevice(), data.bumpMap());
+
+	specularHighlightsMap_.initialise(device->d3dDevice(), data.specularHighlightsMap());
 }
 
 void Model::reset() {

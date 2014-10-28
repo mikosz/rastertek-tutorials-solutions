@@ -39,13 +39,15 @@ void LightingPixelShader::bind(
 	Texture* baseTexture,
 	Texture* detailTexture,
 	Texture* bumpMap,
+	Texture* specularHighlightsMap,
 	const LightBuffer& lightBuffer,
 	float gamma
 	) {
-	ID3D11ShaderResourceView* resources[3];
+	ID3D11ShaderResourceView* resources[4];
 	resources[0] = baseTexture->resource();
 	resources[1] = detailTexture->resource();
 	resources[2] = bumpMap->resource();
+	resources[3] = specularHighlightsMap->resource();
 	deviceContext->PSSetShaderResources(0, sizeof(resources) / sizeof(resources[0]), resources);
 
 	ID3D11SamplerState* sampler = samplerState_.get();

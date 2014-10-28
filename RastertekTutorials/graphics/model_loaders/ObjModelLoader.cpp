@@ -290,7 +290,8 @@ void ObjModelLoader::load(ModelData* modelData, const boost::filesystem::path& s
 
 	modelData->setBaseTexture("data/textures/bricks.dds");
 	modelData->setDetailTexture("data/textures/ground.dds");
-	modelData->setBumpMap("data/textures/bricks.normalmap.dds");
+	modelData->setBumpMap("data/textures/bricks.bumpmap.dds");
+	modelData->setSpecularHighlightsMap("data/textures/bricks.specular.dds");
 
 	ifs.close();
 }

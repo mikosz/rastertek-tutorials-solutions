@@ -1,4 +1,4 @@
-Texture2D tex[3];
+Texture2D tex[4];
 SamplerState samplerState;
 
 cbuffer LightBuffer {
@@ -6,7 +6,7 @@ cbuffer LightBuffer {
 	float4 diffuseColour;
 	float3 lightDirection;
 	float specularPower;
-	float4 specularColour;
+	float4 _ /* specularColour */; // ignored
 	float gamma;
 
 	float3 padding_;
@@ -46,6 +46,7 @@ float4 main(PixelInputType input) : SV_TARGET
 		lightColour = saturate(lightColour + saturate(diffuseColour * lightIntensity));
 
 		float3 reflection = normalize(2 * lightIntensity * bumpNormal - lightDirection);
+		float4 specularColour = tex[3].Sample(samplerState, input.textureCoord);
 		specular = specularColour * pow(saturate(dot(reflection, input.viewDirection)), specularPower);
 	}
 

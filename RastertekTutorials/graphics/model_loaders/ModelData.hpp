@@ -81,6 +81,10 @@ public:
 		bumpMap_ = bumpMap;
 	}
 
+	void setSpecularHighlightsMap(const boost::filesystem::path& specularHighlightsMap) {
+		specularHighlightsMap_ = specularHighlightsMap;
+	}
+
 	void generateNormals();
 
 	void generateTangents();
@@ -111,6 +115,10 @@ public:
 		return bumpMap_;
 	}
 
+	const boost::filesystem::path& specularHighlightsMap() const {
+		return specularHighlightsMap_;
+	}
+
 private:
 
 	Groups groups_;
@@ -126,6 +134,8 @@ private:
 	boost::filesystem::path detailTexture_;
 
 	boost::filesystem::path bumpMap_;
+
+	boost::filesystem::path specularHighlightsMap_;
 
 	void generateNormal(size_t indexIndex);
 
