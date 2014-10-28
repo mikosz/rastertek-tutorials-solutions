@@ -36,11 +36,15 @@ void LightingPixelShader::reset() {
 
 void LightingPixelShader::bind(
 	ID3D11DeviceContext* deviceContext,
-	Texture* texture,
-	const LightBuffer& lightBuffer
+	Texture* baseTexture,
+	Texture* detailTexture,
+	const LightBuffer& lightBuffer,
+	float gamma
 	) {
-	ID3D11ShaderResourceView* resource = texture->resource();
-	deviceContext->PSSetShaderResources(0, 1, &resource);
+	ID3D11ShaderResourceView* resources[2];
+	resources[0] = baseTexture->resource();
+	resources[1] = detailTexture->resource();
+	deviceContext->PSSetShaderResources(0, 2, resources);
 
 	ID3D11SamplerState* sampler = samplerState_.get();
 	deviceContext->PSSetSamplers(0, 1, &sampler);

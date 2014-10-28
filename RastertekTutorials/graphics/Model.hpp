@@ -47,8 +47,12 @@ public:
 		return worldMatrix_;
 	}
 
-	Texture& texture() {
-		return texture_;
+	Texture& baseTexture() {
+		return baseTexture_;
+	}
+
+	Texture& detailTexture() {
+		return detailTexture_;
 	}
 
 private:
@@ -61,7 +65,9 @@ private:
 
 	model_loaders::ModelData::Groups groupData_;
 
-	Texture texture_;
+	Texture baseTexture_;
+
+	Texture detailTexture_;
 
 };
 

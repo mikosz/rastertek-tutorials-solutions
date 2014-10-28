@@ -81,15 +81,22 @@ void Renderer::renderFrame() {
 			lightBuffer.lightDirection = D3DXVECTOR3(0.0f, 0.0f, 1.0f);
 			lightBuffer.specularColour = D3DXVECTOR4(1.0f, 1.0f, 1.0f, 1.0f);
 			lightBuffer.specularPower = 32.0f;
+			lightBuffer.gamma = 2.0f;
 
-			worldPixelShader_.bind(device_.d3dDeviceContext(), &(*it)->texture(), lightBuffer);
+			worldPixelShader_.bind(
+				device_.d3dDeviceContext(),
+				&(*it)->baseTexture(),
+				&(*it)->detailTexture(),
+				lightBuffer,
+				2.0f
+				);
 
 			(*it)->render(&device_, worldCamera_);
 		}
 	}
 
 	{
-		std::list<Model*>::iterator it, end = hudPipeline_.end();
+		/* std::list<Model*>::iterator it, end = hudPipeline_.end();
 		for (it = hudPipeline_.begin(); it != end; ++it) {
 			shaders::LightingVertexShader::MatrixBuffer matrixBuffer;
 			matrixBuffer.projection = worldCamera_.projectionMatrix();
@@ -107,11 +114,12 @@ void Renderer::renderFrame() {
 			lightBuffer.lightDirection = D3DXVECTOR3(0.0f, 0.0f, 1.0f);
 			lightBuffer.specularColour = D3DXVECTOR4(1.0f, 1.0f, 1.0f, 1.0f);
 			lightBuffer.specularPower = 32.0f;
+			lightBuffer.gamma = 2.0f;
 
 			worldPixelShader_.bind(device_.d3dDeviceContext(), &(*it)->texture(), lightBuffer);
 
 			(*it)->render(&device_, worldCamera_);
-		}
+		} */
 	}
 
 	device_.endScene();

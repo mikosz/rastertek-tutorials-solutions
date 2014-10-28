@@ -26,6 +26,9 @@ public:
 		D3DXVECTOR3 lightDirection;
 		float specularPower;
 		D3DXVECTOR4 specularColour;
+		float gamma;
+
+		float padding_[3];
 	};
 
 	void initialise(ID3D11Device* device, utils::COMWrapper<ID3D10Blob> shaderBuffer);
@@ -34,8 +37,10 @@ public:
 
 	void bind(
 		ID3D11DeviceContext* deviceContext,
-		Texture* texture,
-		const LightBuffer& lightBuffer
+		Texture* baseTexture,
+		Texture* detailTexture,
+		const LightBuffer& lightBuffer,
+		float gamma
 		);
 
 private:

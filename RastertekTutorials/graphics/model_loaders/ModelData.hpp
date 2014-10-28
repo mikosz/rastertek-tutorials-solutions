@@ -65,8 +65,12 @@ public:
 
 	void addIndex(Index index);
 
-	void setTexture(const boost::filesystem::path& texture) {
-		texture_ = texture;
+	void setBaseTexture(const boost::filesystem::path& baseTexture) {
+		baseTexture_ = baseTexture;
+	}
+
+	void setDetailTexture(const boost::filesystem::path& detailTexture) {
+		detailTexture_ = detailTexture;
 	}
 
 	void generateNormals();
@@ -83,8 +87,12 @@ public:
 		return indices_;
 	}
 
-	const boost::filesystem::path& texture() const {
-		return texture_;
+	const boost::filesystem::path& baseTexture() const {
+		return baseTexture_;
+	}
+
+	const boost::filesystem::path& detailTexture() const {
+		return detailTexture_;
 	}
 
 private:
@@ -97,7 +105,9 @@ private:
 
 	size_t maxIndex_;
 
-	boost::filesystem::path texture_;
+	boost::filesystem::path baseTexture_;
+
+	boost::filesystem::path detailTexture_;
 
 	void generateNormal(size_t indexIndex);
 

@@ -43,7 +43,7 @@ void System::initialise() {
 	}
 
 	audio_.initialise(applicationWindow_.handle());
-	backgroundMusic_ = audio_.loadWaveFile("data/audio/HugeWAV.wav");
+	// backgroundMusic_ = audio_.loadWaveFile("data/audio/HugeWAV.wav");
 
 	{
 		input::Input::Properties properties;
@@ -67,7 +67,7 @@ void System::shutdown() {
 int System::run() {
 	entities::Actor actor(&renderer_);
 
-	audio_.play(backgroundMusic_);
+	// audio_.play(backgroundMusic_);
 
 	boost::posix_time::ptime lastFrameEnd = boost::posix_time::microsec_clock::universal_time();
 	boost::posix_time::time_duration lastFrameDuration;

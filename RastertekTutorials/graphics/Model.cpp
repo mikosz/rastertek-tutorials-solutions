@@ -45,14 +45,16 @@ void Model::initialise(Device* device, const model_loaders::ModelData& data) {
 
 	groupData_ = data.groups();
 
-	texture_.initialise(device->d3dDevice(), data.texture());
+	baseTexture_.initialise(device->d3dDevice(), data.baseTexture());
+
+	detailTexture_.initialise(device->d3dDevice(), data.detailTexture());
 }
 
 void Model::reset() {
 	vertexBuffer_.reset();
 	indexBuffer_.reset();
 	groupData_.clear();
-	texture_.reset();
+	baseTexture_.reset();
 }
 
 void Model::render(Device* device, const Camera& camera) {

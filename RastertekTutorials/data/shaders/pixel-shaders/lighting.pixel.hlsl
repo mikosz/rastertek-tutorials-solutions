@@ -1,4 +1,4 @@
-Texture2D tex;
+Texture2D tex[2];
 SamplerState samplerState;
 
 cbuffer LightBuffer {
@@ -7,6 +7,9 @@ cbuffer LightBuffer {
 	float3 lightDirection;
 	float specularPower;
 	float4 specularColour;
+	float gamma;
+
+	float3 padding_;
 }
 
 struct PixelInputType
@@ -19,11 +22,13 @@ struct PixelInputType
 
 float4 main(PixelInputType input) : SV_TARGET
 {
-    float4 textureColour = tex.Sample(samplerState, input.textureCoord);
+    float4 texture0Colour = tex[0].Sample(samplerState, input.textureCoord);
+    float4 texture1Colour = tex[1].Sample(samplerState, input.textureCoord);
+	float4 textureColour = saturate(texture0Colour * texture1Colour * gamma);
 
 	float4 lightColour = ambientColour;
 
-	float4 specular;
+	float4 specular = 0;
 
 	float lightIntensity = saturate(dot(input.normal, -lightDirection));
 	if (lightIntensity > 0.0f) {
