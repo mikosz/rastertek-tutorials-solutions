@@ -44,10 +44,10 @@ void ModelData::generateNormals() {
 	for (size_t indexIndex = groups_.back().firstIndexIndex; indexIndex < indices_.size(); ++indexIndex) {
 		size_t index = indices_[indexIndex];
 
-		if (vertices_[index].normal == NORMAL_NEEDS_GENERATION) {
+		// if (vertices_[index].normal == NORMAL_NEEDS_GENERATION) {
 			assert(groups_.back().topology == TRIANGLE_LIST); // TODO: TRIANGLE_STRIP
 			generateNormal(indexIndex);
-		}
+		// }
 	}
 }
 
