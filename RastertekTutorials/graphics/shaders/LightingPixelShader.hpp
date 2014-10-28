@@ -39,6 +39,7 @@ public:
 		ID3D11DeviceContext* deviceContext,
 		Texture* baseTexture,
 		Texture* detailTexture,
+		Texture* bumpMap,
 		const LightBuffer& lightBuffer,
 		float gamma
 		);

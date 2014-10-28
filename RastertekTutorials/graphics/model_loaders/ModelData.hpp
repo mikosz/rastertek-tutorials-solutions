@@ -29,6 +29,10 @@ public:
 
 		D3DXVECTOR3 normal;
 
+		D3DXVECTOR3 tangent;
+
+		D3DXVECTOR3 binormal;
+
 	};
 
 	typedef boost::uint32_t Index;
@@ -73,7 +77,15 @@ public:
 		detailTexture_ = detailTexture;
 	}
 
+	void setBumpMap(const boost::filesystem::path& bumpMap) {
+		bumpMap_ = bumpMap;
+	}
+
 	void generateNormals();
+
+	void generateTangents();
+
+	void generateBinormals();
 
 	const Groups& groups() const {
 		return groups_;
@@ -95,6 +107,10 @@ public:
 		return detailTexture_;
 	}
 
+	const boost::filesystem::path& bumpMap() const {
+		return bumpMap_;
+	}
+
 private:
 
 	Groups groups_;
@@ -108,6 +124,8 @@ private:
 	boost::filesystem::path baseTexture_;
 
 	boost::filesystem::path detailTexture_;
+
+	boost::filesystem::path bumpMap_;
 
 	void generateNormal(size_t indexIndex);
 

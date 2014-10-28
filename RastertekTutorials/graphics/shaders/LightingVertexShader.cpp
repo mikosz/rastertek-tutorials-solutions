@@ -7,7 +7,7 @@ using namespace tutorials::graphics::shaders;
 void LightingVertexShader::initialise(ID3D11Device* device, utils::COMWrapper<ID3D10Blob> shaderBuffer) {
 	VertexShader::initialise(device, shaderBuffer);
 
-	D3D11_INPUT_ELEMENT_DESC inputDesc[3];
+	D3D11_INPUT_ELEMENT_DESC inputDesc[5];
 
 	inputDesc[0].SemanticName = "POSITION";
 	inputDesc[0].SemanticIndex = 0;
@@ -32,6 +32,22 @@ void LightingVertexShader::initialise(ID3D11Device* device, utils::COMWrapper<ID
 	inputDesc[2].AlignedByteOffset = D3D11_APPEND_ALIGNED_ELEMENT;
 	inputDesc[2].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
 	inputDesc[2].InstanceDataStepRate = 0;
+
+	inputDesc[3].SemanticName = "TANGENT";
+	inputDesc[3].SemanticIndex = 0;
+	inputDesc[3].Format = DXGI_FORMAT_R32G32B32_FLOAT;
+	inputDesc[3].InputSlot = 0;
+	inputDesc[3].AlignedByteOffset = D3D11_APPEND_ALIGNED_ELEMENT;
+	inputDesc[3].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
+	inputDesc[3].InstanceDataStepRate = 0;
+
+	inputDesc[4].SemanticName = "BINORMAL";
+	inputDesc[4].SemanticIndex = 0;
+	inputDesc[4].Format = DXGI_FORMAT_R32G32B32_FLOAT;
+	inputDesc[4].InputSlot = 0;
+	inputDesc[4].AlignedByteOffset = D3D11_APPEND_ALIGNED_ELEMENT;
+	inputDesc[4].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
+	inputDesc[4].InstanceDataStepRate = 0;
 
 	size_t inputDescSize = sizeof(inputDesc) / sizeof(inputDesc[0]);
 

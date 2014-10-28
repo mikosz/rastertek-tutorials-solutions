@@ -55,6 +55,10 @@ public:
 		return detailTexture_;
 	}
 
+	Texture& bumpMap() {
+		return bumpMap_;
+	}
+
 private:
 
 	D3DXMATRIX worldMatrix_;
@@ -68,6 +72,8 @@ private:
 	Texture baseTexture_;
 
 	Texture detailTexture_;
+
+	Texture bumpMap_;
 
 };
 

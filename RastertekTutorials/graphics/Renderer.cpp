@@ -79,7 +79,7 @@ void Renderer::renderFrame() {
 			lightBuffer.ambientColour = D3DXVECTOR4(0.1f, 0.1f, 0.1f, 1.0f);
 			lightBuffer.diffuseColour = D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f);
 			lightBuffer.lightDirection = D3DXVECTOR3(0.0f, 0.0f, 1.0f);
-			lightBuffer.specularColour = D3DXVECTOR4(1.0f, 1.0f, 1.0f, 1.0f);
+			lightBuffer.specularColour = D3DXVECTOR4(0.0f, 0.0f, 0.0f, 1.0f);
 			lightBuffer.specularPower = 32.0f;
 			lightBuffer.gamma = 2.0f;
 
@@ -87,6 +87,7 @@ void Renderer::renderFrame() {
 				device_.d3dDeviceContext(),
 				&(*it)->baseTexture(),
 				&(*it)->detailTexture(),
+				&(*it)->bumpMap(),
 				lightBuffer,
 				2.0f
 				);

@@ -15,10 +15,13 @@ Actor::Actor(graphics::Renderer* renderer) {
 
 	renderer->addWorldModel(&model_);
 
-	model_.moveTo(0.0f, 0.0f, 0.1f);
+	model_.moveTo(0.0f, 0.0f, 3.0f);
 }
 
 void Actor::update(const utils::Timer::Duration& duration) {
-	model_.moveBy(0.0f, 0.0f, 0.000001f * duration.total_microseconds());
-	model_.rotateBy(0.000003f * duration.total_microseconds(), 0.0000001f * duration.total_microseconds(), 0.000001f * duration.total_microseconds());
+	float us = static_cast<float>(duration.total_microseconds());
+	us *= 0.3f; // scale down
+
+	// model_.moveBy(0.0f, 0.0f, 0.000001f * us);
+	model_.rotateBy(0.000003f * us, 0.0000001f * us, 0.000001f * us);
 }

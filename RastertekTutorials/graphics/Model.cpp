@@ -48,6 +48,8 @@ void Model::initialise(Device* device, const model_loaders::ModelData& data) {
 	baseTexture_.initialise(device->d3dDevice(), data.baseTexture());
 
 	detailTexture_.initialise(device->d3dDevice(), data.detailTexture());
+
+	bumpMap_.initialise(device->d3dDevice(), data.bumpMap());
 }
 
 void Model::reset() {

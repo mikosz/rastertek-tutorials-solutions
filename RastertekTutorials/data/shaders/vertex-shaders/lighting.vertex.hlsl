@@ -16,14 +16,18 @@ struct VertexInputType
     float4 position : POSITION;
     float2 textureCoord : TEXCOORD0;
 	float3 normal : NORMAL;
+	float3 tangent : TANGENT;
+	float3 binormal : BINORMAL;
 };
 
 struct PixelInputType
 {
     float4 position : SV_POSITION;
     float2 textureCoord : TEXCOORD0;
-	float3 normal : NORMAL;
 	float3 viewDirection: TEXCOORD1;
+	float3 normal : NORMAL;
+	float3 tangent : TANGENT;
+	float3 binormal : BINORMAL;
 };
 
 PixelInputType main(VertexInputType input)
@@ -48,5 +52,11 @@ PixelInputType main(VertexInputType input)
 	output.normal = mul(input.normal, (float3x3)worldMatrix);
 	output.normal = normalize(output.normal);
 
-    return output;
+	output.tangent = mul(input.binormal, (float3x3)worldMatrix);
+	output.tangent = normalize(output.tangent);
+
+	output.binormal = mul(input.binormal, (float3x3)worldMatrix);
+	output.binormal = normalize(output.binormal);
+
+	return output;
 }
