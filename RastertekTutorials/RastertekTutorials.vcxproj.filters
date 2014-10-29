@@ -168,6 +168,12 @@
     <ClInclude Include="audio\Audio.hpp">
       <Filter>Header Files\audio</Filter>
     </ClInclude>
+    <ClInclude Include="graphics\RenderTargetTexture.hpp">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="entities\Sprite.hpp">
+      <Filter>Header Files\entities</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="system\Window.cpp">
@@ -253,6 +259,12 @@
     </ClCompile>
     <ClCompile Include="audio\Audio.cpp">
       <Filter>Source Files\audio</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\RenderTargetTexture.cpp">
+      <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="entities\Sprite.cpp">
+      <Filter>Source Files\entities</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

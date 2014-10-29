@@ -20,9 +20,7 @@ void Keyboard::initialise(Input* input, system::Window::Handle windowHandle) {
 		throw std::runtime_error("Failed to set cooperative level for keyboard");
 	}
 
-	if (FAILED(device_->Acquire())) {
-		throw std::runtime_error("Failed to acquire the keyboard device");
-	}
+	device_->Acquire();
 }
 
 void Keyboard::shutdown() {

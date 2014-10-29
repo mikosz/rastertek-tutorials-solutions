@@ -45,13 +45,21 @@ void Model::initialise(Device* device, const model_loaders::ModelData& data) {
 
 	groupData_ = data.groups();
 
-	baseTexture_.initialise(device->d3dDevice(), data.baseTexture());
+	if (!data.baseTexture().empty()) {
+		baseTexture_.initialise(device->d3dDevice(), data.baseTexture());
+	}
 
-	detailTexture_.initialise(device->d3dDevice(), data.detailTexture());
+	if (!data.detailTexture().empty()) {
+		detailTexture_.initialise(device->d3dDevice(), data.detailTexture());
+	}
 
-	bumpMap_.initialise(device->d3dDevice(), data.bumpMap());
+	if (!data.bumpMap().empty()) {
+		bumpMap_.initialise(device->d3dDevice(), data.bumpMap());
+	}
 
-	specularHighlightsMap_.initialise(device->d3dDevice(), data.specularHighlightsMap());
+	if (!data.specularHighlightsMap().empty()) {
+		specularHighlightsMap_.initialise(device->d3dDevice(), data.specularHighlightsMap());
+	}
 }
 
 void Model::reset() {
@@ -74,8 +82,7 @@ void Model::render(Device* device, const Camera& camera) {
 		++next;
 		if (next == end) {
 			indexCount = indexBuffer_.indexCount() - it->firstIndexIndex;
-		}
-		else {
+		} else {
 			indexCount = next->firstIndexIndex - it->firstIndexIndex;
 		}
 

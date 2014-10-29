@@ -48,6 +48,10 @@ public:
 		return *d3dDeviceContext_;
 	}
 
+	ID3D11DepthStencilView* depthStencilView() {
+		return *depthStencilView_;
+	}
+
 private:
 
 	Properties currentProperties_;

@@ -31,7 +31,13 @@ public:
 
 	void shutdown();
 
-	void renderFrame();
+	void beginScene();
+
+	void endScene();
+
+	void renderWorld();
+
+	void renderHUD();
 
 	void addWorldModel(Model* model) {
 		worldPipeline_.push_back(model);
@@ -43,6 +49,10 @@ public:
 
 	Device& device() {
 		return device_;
+	}
+
+	A3DCamera& worldCamera() {
+		return worldCamera_;
 	}
 
 private:

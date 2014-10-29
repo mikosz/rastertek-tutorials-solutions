@@ -1,6 +1,8 @@
 #include "System.hpp"
 
 #include "entities/Actor.hpp"
+#include "entities/Sprite.hpp"
+#include "graphics/RenderTargetTexture.hpp"
 
 #include <boost/bind.hpp>
 #include <boost/date_time/posix_time/posix_time.hpp>
@@ -67,6 +69,11 @@ void System::shutdown() {
 int System::run() {
 	entities::Actor actor(&renderer_);
 
+	graphics::RenderTargetTexture renderTargetTexture;
+	renderTargetTexture.initialise(renderer_.device().d3dDevice(), 800, 600);
+	renderTargetTexture.clear(renderer_.device().d3dDeviceContext(), renderer_.device().depthStencilView());
+	entities::Sprite sprite(&renderer_, renderTargetTexture.shaderResourceView());
+
 	// audio_.play(backgroundMusic_);
 
 	boost::posix_time::ptime lastFrameEnd = boost::posix_time::microsec_clock::universal_time();
@@ -93,7 +100,34 @@ int System::run() {
 		}
 
 		actor.update(lastFrameDuration);
-		renderer_.renderFrame();
+
+		{
+			renderTargetTexture.clear(renderer_.device().d3dDeviceContext(), renderer_.device().depthStencilView());
+			renderTargetTexture.use(renderer_.device().d3dDeviceContext(), renderer_.device().depthStencilView());
+
+			graphics::A3DCamera oldCam = renderer_.worldCamera();
+			
+			{
+				graphics::A3DCamera::Properties newProps;
+				newProps.aspectRatio = 800.0f / 600.0f;
+				newProps.nearPlane = 0.1f;
+				newProps.farPlane = 1000.0f;
+				newProps.fieldOfView = static_cast<float>(D3DXToRadian(40.0f));
+				newProps.lookAt = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+				newProps.position = D3DXVECTOR3(0.0f, 0.0f, 7.0f);
+				newProps.up = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
+				renderer_.worldCamera().initialise(newProps);
+			}
+
+			renderer_.renderWorld();
+
+			renderer_.worldCamera() = oldCam;
+		}
+
+		renderer_.beginScene();
+		renderer_.renderWorld();
+		renderer_.renderHUD();
+		renderer_.endScene();
 
 		boost::posix_time::ptime now = boost::posix_time::microsec_clock::universal_time();
 		lastFrameDuration = now - lastFrameEnd;

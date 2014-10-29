@@ -20,6 +20,7 @@ struct PixelInputType
 	float3 normal : NORMAL;
 	float3 tangent : TANGENT;
 	float3 binormal : BINORMAL;
+	float fogFactor : FOG;
 };
 
 float4 main(PixelInputType input) : SV_TARGET
@@ -50,5 +51,9 @@ float4 main(PixelInputType input) : SV_TARGET
 		specular = specularColour * pow(saturate(dot(reflection, input.viewDirection)), specularPower);
 	}
 
-	return saturate(lightColour * textureColour + specular);
+	float4 litColour = saturate(lightColour * textureColour + specular);
+
+	float4 fogColour = float4(0.5f, 0.2f, 0.2f, 1.0f);
+
+	return input.fogFactor * litColour + (1.0f - input.fogFactor) * fogColour;
 }

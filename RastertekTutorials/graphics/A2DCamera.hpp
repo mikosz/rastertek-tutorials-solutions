@@ -13,6 +13,8 @@ public:
 
 		D3DXVECTOR3 position;
 
+		D3DXVECTOR3 lookAt;
+
 		size_t viewWidth;
 
 		size_t viewHeight;

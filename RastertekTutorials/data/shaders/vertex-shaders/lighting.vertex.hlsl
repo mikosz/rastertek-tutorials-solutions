@@ -11,6 +11,14 @@ cbuffer CameraBuffer
 	float padding;
 };
 
+cbuffer FogBuffer
+{
+	float fogStart;
+	float fogEnd;
+
+	float _[2]; // padding
+};
+
 struct VertexInputType
 {
     float4 position : POSITION;
@@ -28,12 +36,13 @@ struct PixelInputType
 	float3 normal : NORMAL;
 	float3 tangent : TANGENT;
 	float3 binormal : BINORMAL;
+	float fogFactor: FOG;
 };
 
 PixelInputType main(VertexInputType input)
 {
     PixelInputType output;
-	float4 worldPosition;
+	float4 worldPosition, cameraPosition;
     
     // Change the position vector to be 4 units for proper matrix calculations.
     input.position.w = 1.0f;
@@ -42,6 +51,7 @@ PixelInputType main(VertexInputType input)
     output.position = mul(input.position, worldMatrix);
 	worldPosition = output.position;
     output.position = mul(output.position, viewMatrix);
+	cameraPosition = output.position;
     output.position = mul(output.position, projectionMatrix);
     
 	output.viewDirection = normalize(cameraPosition.xyz - worldPosition.xyz);
@@ -57,6 +67,8 @@ PixelInputType main(VertexInputType input)
 
 	output.binormal = mul(input.binormal, (float3x3)worldMatrix);
 	output.binormal = normalize(output.binormal);
+
+	output.fogFactor = saturate((fogEnd - cameraPosition.z) / (fogEnd - fogStart));
 
 	return output;
 }

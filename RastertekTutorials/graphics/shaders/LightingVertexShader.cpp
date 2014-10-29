@@ -64,12 +64,14 @@ void LightingVertexShader::initialise(ID3D11Device* device, utils::COMWrapper<ID
 
 	matrixBuffer_.initialise(device, sizeof(MatrixBuffer));
 	cameraBuffer_.initialise(device, sizeof(CameraBuffer));
+	fogBuffer_.initialise(device, sizeof(FogBuffer));
 }
 
 void LightingVertexShader::reset() {
 	inputLayout_.reset();
 	matrixBuffer_.reset();
 	cameraBuffer_.reset();
+	fogBuffer_.reset();
 
 	VertexShader::reset();
 }
@@ -77,7 +79,8 @@ void LightingVertexShader::reset() {
 void LightingVertexShader::bind(
 	ID3D11DeviceContext* deviceContext,
 	const MatrixBuffer& matrixBuffer,
-	const CameraBuffer& cameraBuffer
+	const CameraBuffer& cameraBuffer,
+	const FogBuffer& fogBuffer
 	) {
 	MatrixBuffer transposed;
 	D3DXMatrixTranspose(&transposed.world, &matrixBuffer.world);
@@ -88,7 +91,10 @@ void LightingVertexShader::bind(
 	matrixBuffer_.bind(deviceContext, ShaderConstantsBuffer::VERTEX, 0);
 
 	cameraBuffer_.write(deviceContext, &cameraBuffer, sizeof(CameraBuffer));
-	cameraBuffer_.bind(deviceContext, ShaderConstantsBuffer::PIXEL, 1);
+	cameraBuffer_.bind(deviceContext, ShaderConstantsBuffer::VERTEX, 1);
+
+	fogBuffer_.write(deviceContext, &fogBuffer, sizeof(FogBuffer));
+	fogBuffer_.bind(deviceContext, ShaderConstantsBuffer::VERTEX, 2);
 
 	deviceContext->IASetInputLayout(inputLayout_);
 

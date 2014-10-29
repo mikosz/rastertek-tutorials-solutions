@@ -192,8 +192,6 @@ void createDepthStencilView(
 	if (FAILED(device->CreateDepthStencilView(depthStencilBuffer, &depthStencilViewDesc, &depthStencilView->get()))) {
 		throw std::runtime_error("Failed to create a depth stencil view");
 	}
-
-	deviceContext->OMSetRenderTargets(1, &renderTargetView, *depthStencilView);
 }
 
 void createRasteriserState(
@@ -270,6 +268,7 @@ void Device::shutdown() {
 void Device::beginScene() {
 	float colour[] = { 0.2f, 0.5f, 0.2f, 1.0f };
 
+	d3dDeviceContext_->OMSetRenderTargets(1, &renderTargetView_.get(), *depthStencilView_);
 	d3dDeviceContext_->ClearRenderTargetView(renderTargetView_, colour);
 	d3dDeviceContext_->ClearDepthStencilView(depthStencilView_, D3D11_CLEAR_DEPTH, 1.0f, 0);
 }

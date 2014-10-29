@@ -31,6 +31,13 @@ public:
 		float padding_;
 	};
 
+	struct FogBuffer {
+		float fogStart;
+		float fogEnd;
+
+		float padding_[2];
+	};
+
 	struct Vertex {
 		D3DXVECTOR3 position;
 		D3DXVECTOR2 textureCoord;
@@ -46,8 +53,10 @@ public:
 	void bind(
 		ID3D11DeviceContext* deviceContext,
 		const MatrixBuffer& matrixBuffer,
-		const CameraBuffer& cameraBuffer
+		const CameraBuffer& cameraBuffer,
+		const FogBuffer& fogBuffer
 		);
+
 
 private:
 
@@ -56,6 +65,8 @@ private:
 	ShaderConstantsBuffer matrixBuffer_;
 
 	ShaderConstantsBuffer cameraBuffer_;
+
+	ShaderConstantsBuffer fogBuffer_;
 
 };
 

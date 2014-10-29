@@ -74,6 +74,7 @@
   <ItemGroup>
     <ClInclude Include="audio\Audio.hpp" />
     <ClInclude Include="entities\Actor.hpp" />
+    <ClInclude Include="entities\Sprite.hpp" />
     <ClInclude Include="graphics\A2DCamera.hpp" />
     <ClInclude Include="graphics\A3DCamera.hpp" />
     <ClInclude Include="graphics\Buffer.hpp" />
@@ -83,6 +84,7 @@
     <ClInclude Include="graphics\model_loaders\ModelLoader.hpp" />
     <ClInclude Include="graphics\model_loaders\ObjModelLoader.hpp" />
     <ClInclude Include="graphics\model_loaders\SimpleModelLoader.hpp" />
+    <ClInclude Include="graphics\RenderTargetTexture.hpp" />
     <ClInclude Include="graphics\ShaderConstantsBuffer.hpp" />
     <ClInclude Include="graphics\Model.hpp" />
     <ClInclude Include="graphics\Renderer.hpp" />
@@ -106,6 +108,7 @@
   <ItemGroup>
     <ClCompile Include="audio\Audio.cpp" />
     <ClCompile Include="entities\Actor.cpp" />
+    <ClCompile Include="entities\Sprite.cpp" />
     <ClCompile Include="game\main.cpp" />
     <ClCompile Include="graphics\A2DCamera.cpp" />
     <ClCompile Include="graphics\Buffer.cpp" />
@@ -115,6 +118,7 @@
     <ClCompile Include="graphics\model_loaders\ModelData.cpp" />
     <ClCompile Include="graphics\model_loaders\ObjModelLoader.cpp" />
     <ClCompile Include="graphics\model_loaders\SimpleModelLoader.cpp" />
+    <ClCompile Include="graphics\RenderTargetTexture.cpp" />
     <ClCompile Include="graphics\ShaderConstantsBuffer.cpp" />
     <ClCompile Include="graphics\IndexBuffer.cpp" />
     <ClCompile Include="graphics\Model.cpp" />

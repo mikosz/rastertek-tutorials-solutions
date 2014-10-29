@@ -18,6 +18,8 @@ public:
 
 	void initialise(ID3D11Device* device, const boost::filesystem::path& textureFile);
 
+	void initialise(utils::COMWrapper<ID3D11ShaderResourceView> shaderResourceView);
+
 	void reset();
 
 	ID3D11ShaderResourceView* resource() {

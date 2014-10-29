@@ -43,6 +43,13 @@ public:
 		D3DXMatrixMultiply(&worldMatrix_, &rotationMatrix, &worldMatrix_);
 	}
 
+	void scale(float x, float y, float z) {
+		D3DXMATRIX scalingMatrix;
+		D3DXMatrixScaling(&scalingMatrix, x, y, z);
+
+		D3DXMatrixMultiply(&worldMatrix_, &scalingMatrix, &worldMatrix_);
+	}
+
 	D3DXMATRIX worldMatrix() const {
 		return worldMatrix_;
 	}
