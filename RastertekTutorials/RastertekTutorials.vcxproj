@@ -51,6 +51,8 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MinimalRebuild>false</MinimalRebuild>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -99,6 +101,7 @@
     <ClInclude Include="input\Input.hpp" />
     <ClInclude Include="input\Keyboard.hpp" />
     <ClInclude Include="input\Mouse.hpp" />
+    <ClInclude Include="system\Debug.hpp" />
     <ClInclude Include="system\System.hpp" />
     <ClInclude Include="system\SystemContext.hpp" />
     <ClInclude Include="system\Window.hpp" />

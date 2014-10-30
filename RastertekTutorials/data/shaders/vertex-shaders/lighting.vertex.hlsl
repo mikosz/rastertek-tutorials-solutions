@@ -1,22 +1,19 @@
-cbuffer MatrixBuffer
+cbuffer MatrixBuffer : register(b0)
 {
     matrix worldMatrix;
     matrix viewMatrix;
     matrix projectionMatrix;
 };
 
-cbuffer CameraBuffer
+cbuffer CameraBuffer : register(b1)
 {
 	float3 cameraPosition;
-	float padding;
 };
 
-cbuffer FogBuffer
+cbuffer FogBuffer : register(b2)
 {
 	float fogStart;
 	float fogEnd;
-
-	float _[2]; // padding
 };
 
 struct VertexInputType

@@ -90,10 +90,10 @@ void LightingVertexShader::bind(
 	matrixBuffer_.write(deviceContext, &transposed, sizeof(transposed));
 	matrixBuffer_.bind(deviceContext, ShaderConstantsBuffer::VERTEX, 0);
 
-	cameraBuffer_.write(deviceContext, &cameraBuffer, sizeof(CameraBuffer));
+	cameraBuffer_.write(deviceContext, &cameraBuffer, sizeof(cameraBuffer));
 	cameraBuffer_.bind(deviceContext, ShaderConstantsBuffer::VERTEX, 1);
 
-	fogBuffer_.write(deviceContext, &fogBuffer, sizeof(FogBuffer));
+	fogBuffer_.write(deviceContext, &fogBuffer, sizeof(fogBuffer));
 	fogBuffer_.bind(deviceContext, ShaderConstantsBuffer::VERTEX, 2);
 
 	deviceContext->IASetInputLayout(inputLayout_);

@@ -3,6 +3,8 @@
 #include <vector>
 #include <stdexcept>
 
+#include "system/Debug.hpp"
+
 using namespace tutorials;
 using namespace tutorials::graphics;
 
@@ -92,11 +94,16 @@ void createD3DDevice(
 
 	swapChainDesc.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;
 
+	UINT creationFlags = 0;
+	if (system::DEBUG) {
+		creationFlags |= D3D11_CREATE_DEVICE_DEBUG;
+	}
+
 	HRESULT result = D3D11CreateDeviceAndSwapChain(
 		0,
 		D3D_DRIVER_TYPE_HARDWARE,
 		0,
-		0,
+		creationFlags,
 		0,
 		0,
 		D3D11_SDK_VERSION,

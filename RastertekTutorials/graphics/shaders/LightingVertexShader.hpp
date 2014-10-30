@@ -28,12 +28,16 @@ public:
 	struct CameraBuffer {
 		D3DXVECTOR3 cameraPosition;
 
+	private:
+
 		float padding_;
 	};
 
 	struct FogBuffer {
 		float fogStart;
 		float fogEnd;
+
+	private:
 
 		float padding_[2];
 	};
