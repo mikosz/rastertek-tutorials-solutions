@@ -1,4 +1,5 @@
 Texture2D tex[4];
+Texture2D reflectionTexture;
 SamplerState samplerState;
 
 cbuffer LightBuffer : register(b0) {
@@ -21,6 +22,7 @@ struct PixelInputType
 	float3 tangent : TANGENT;
 	float3 binormal : BINORMAL;
 	float fogFactor : FOG;
+	float4 reflectionPosition : TEXCOORD2;
 };
 
 float4 main(PixelInputType input) : SV_TARGET
@@ -55,5 +57,13 @@ float4 main(PixelInputType input) : SV_TARGET
 
 	float4 fogColour = float4(0.5f, 0.2f, 0.2f, 1.0f);
 
-	return input.fogFactor * litColour + (1.0f - input.fogFactor) * fogColour;
+	float4 endColour = input.fogFactor * litColour + (1.0f - input.fogFactor) * fogColour;
+
+	float2 reflectTexCoord;
+	reflectTexCoord.x = input.reflectionPosition.x / input.reflectionPosition.w / 2.0f + 0.5f;
+	reflectTexCoord.y = input.reflectionPosition.y / input.reflectionPosition.w / 2.0f + 0.5f;
+
+	float4 reflectionColour = reflectionTexture.Sample(samplerState, reflectTexCoord);
+
+	return lerp(endColour, reflectionColour, 0.15f);
 }

@@ -73,6 +73,8 @@ int System::run() {
 	renderTargetTexture.initialise(renderer_.device().d3dDevice(), 800, 600);
 	renderTargetTexture.clear(renderer_.device().d3dDeviceContext(), renderer_.device().depthStencilView());
 	entities::Sprite sprite(&renderer_, renderTargetTexture.shaderResourceView());
+	graphics::Texture reflectionTexture;
+	reflectionTexture.initialise(renderTargetTexture.shaderResourceView());
 
 	// audio_.play(backgroundMusic_);
 
@@ -113,19 +115,19 @@ int System::run() {
 				newProps.nearPlane = 0.1f;
 				newProps.farPlane = 1000.0f;
 				newProps.fieldOfView = static_cast<float>(D3DXToRadian(40.0f));
-				newProps.lookAt = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-				newProps.position = D3DXVECTOR3(0.0f, 0.0f, 7.0f);
+				newProps.lookAt = D3DXVECTOR3(0.0f, 0.0f, 1.0f);
+				newProps.position = D3DXVECTOR3(0.0f, -3.0f, 0.0f);
 				newProps.up = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
 				renderer_.worldCamera().initialise(newProps);
 			}
 
-			renderer_.renderWorld();
+			renderer_.renderWorld(&reflectionTexture);
 
 			renderer_.worldCamera() = oldCam;
 		}
 
 		renderer_.beginScene();
-		renderer_.renderWorld();
+		renderer_.renderWorld(&reflectionTexture);
 		renderer_.renderHUD();
 		renderer_.endScene();
 

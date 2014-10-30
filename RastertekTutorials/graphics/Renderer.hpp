@@ -35,7 +35,7 @@ public:
 
 	void endScene();
 
-	void renderWorld();
+	void renderWorld(Texture* reflectionTexture);
 
 	void renderHUD();
 

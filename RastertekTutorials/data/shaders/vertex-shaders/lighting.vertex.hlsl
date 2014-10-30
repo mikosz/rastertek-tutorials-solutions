@@ -16,6 +16,11 @@ cbuffer FogBuffer : register(b2)
 	float fogEnd;
 };
 
+cbuffer ReflectionBuffer : register(b3)
+{
+	matrix reflectionMatrix;
+};
+
 struct VertexInputType
 {
     float4 position : POSITION;
@@ -34,6 +39,7 @@ struct PixelInputType
 	float3 tangent : TANGENT;
 	float3 binormal : BINORMAL;
 	float fogFactor: FOG;
+	float4 reflectionPosition : TEXCOORD2;
 };
 
 PixelInputType main(VertexInputType input)
@@ -51,6 +57,11 @@ PixelInputType main(VertexInputType input)
 	cameraPosition = output.position;
     output.position = mul(output.position, projectionMatrix);
     
+	matrix reflectProjectWorld = mul(reflectionMatrix, projectionMatrix);
+	reflectProjectWorld = mul(worldMatrix, reflectProjectWorld);
+
+	output.reflectionPosition = mul(input.position, reflectProjectWorld);
+
 	output.viewDirection = normalize(cameraPosition.xyz - worldPosition.xyz);
 
     // Store the input color for the pixel shader to use.

@@ -41,6 +41,7 @@ public:
 		Texture* detailTexture,
 		Texture* bumpMap,
 		Texture* specularHighlightsMap,
+		Texture* reflectionTexture,
 		const LightBuffer& lightBuffer,
 		float gamma
 		);

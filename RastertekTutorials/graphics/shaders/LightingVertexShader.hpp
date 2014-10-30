@@ -42,6 +42,10 @@ public:
 		float padding_[2];
 	};
 
+	struct ReflectionBuffer {
+		D3DXMATRIX reflectionMatrix;
+	};
+
 	struct Vertex {
 		D3DXVECTOR3 position;
 		D3DXVECTOR2 textureCoord;
@@ -58,7 +62,8 @@ public:
 		ID3D11DeviceContext* deviceContext,
 		const MatrixBuffer& matrixBuffer,
 		const CameraBuffer& cameraBuffer,
-		const FogBuffer& fogBuffer
+		const FogBuffer& fogBuffer,
+		const ReflectionBuffer& reflectionBuffer
 		);
 
 
@@ -71,6 +76,8 @@ private:
 	ShaderConstantsBuffer cameraBuffer_;
 
 	ShaderConstantsBuffer fogBuffer_;
+
+	ShaderConstantsBuffer reflectionBuffer_;
 
 };
 

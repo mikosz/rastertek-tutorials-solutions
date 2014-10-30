@@ -68,7 +68,7 @@ void Renderer::endScene() {
 	device_.endScene();
 }
 
-void Renderer::renderWorld() {
+void Renderer::renderWorld(Texture* reflectionTexture) {
 	std::list<Model*>::iterator it, end = worldPipeline_.end();
 	for (it = worldPipeline_.begin(); it != end; ++it) {
 		shaders::LightingVertexShader::MatrixBuffer matrixBuffer;
@@ -83,7 +83,16 @@ void Renderer::renderWorld() {
 		fogBuffer.fogStart = 0.0f;
 		fogBuffer.fogEnd = 10.0f;
 
-		worldVertexShader_.bind(device_.d3dDeviceContext(), matrixBuffer, cameraBuffer, fogBuffer);
+		shaders::LightingVertexShader::ReflectionBuffer reflectionBuffer;
+
+		{
+			D3DXVECTOR3 lookAt = D3DXVECTOR3(0.0f, 0.0f, 1.0f);
+			D3DXVECTOR3 position = D3DXVECTOR3(0.0f, -3.0f, 0.0f);
+			D3DXVECTOR3 up = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
+			D3DXMatrixLookAtLH(&reflectionBuffer.reflectionMatrix, &position, &lookAt, &up);
+		}
+
+		worldVertexShader_.bind(device_.d3dDeviceContext(), matrixBuffer, cameraBuffer, fogBuffer, reflectionBuffer);
 
 		shaders::LightingPixelShader::LightBuffer lightBuffer;
 		lightBuffer.ambientColour = D3DXVECTOR4(0.1f, 0.1f, 0.1f, 1.0f);
@@ -99,6 +108,7 @@ void Renderer::renderWorld() {
 			&(*it)->detailTexture(),
 			&(*it)->bumpMap(),
 			&(*it)->specularHighlightsMap(),
+			reflectionTexture,
 			lightBuffer,
 			2.0f
 			);
